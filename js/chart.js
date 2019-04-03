@@ -315,12 +315,22 @@ let buildSideBar = () => {
                 .text(n.name);
             txt.style('cursor', 'pointer').style("pointer-events","visible");
 
+            let outline = svg.append('circle')
+                .attr('cx', n.x)
+                .attr('cy', n.y)
+                .attr('r', 140)
+                .style('fill', 'none')
+                .style('stroke-width', 10)
+                .style('stroke', 'black')
+                .style('display', 'none');
+
             let mouseover = () => {
-                
+                console.log('ya');
+                outline.style('display', '');
             }
 
             let mouseout = () => {
-
+                outline.style('display', 'none');
             }
 
             let click = () => {
@@ -328,8 +338,13 @@ let buildSideBar = () => {
                 img.attr('src', image_dir + (discovered[val[i]] ? 'shrine_discovered.png' : 'shrine_undiscovered.png'));
                 drawMap();
             };
+
             txt.on('click', click);
-            img.on('click', click);   
+            img.on('click', click);
+            txt.on('mouseover', mouseover);
+            img.on('mouseover', mouseover);
+            txt.on('mouseout', mouseout);
+            img.on('mouseout', mouseout);
         }
     }
 }
