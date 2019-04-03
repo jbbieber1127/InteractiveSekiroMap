@@ -21,8 +21,8 @@ svg.attr('preserveAspectRatio', 'xMinYMin meet')
 let defs = svg.append('defs');
 let arrowMarker = defs.append('marker');
 arrowMarker.attr('id', 'arrow')
-    .attr('markerWidth', 50)
-    .attr('markerHeight', 100)
+    .attr('markerWidth', 20)
+    .attr('markerHeight', 40)
     .attr('refX', 0)
     .attr('refY', 3)
     .attr('orient', 'auto')
@@ -30,7 +30,7 @@ arrowMarker.attr('id', 'arrow')
     .attr('viewBox', '0 0 20 20');
 let arrowMarkerPath = arrowMarker.append('path');
 arrowMarkerPath.attr('d', 'M0,0 L0,6 L9,3 z')
-    .attr('fill', 'black');
+    .attr('fill', 'forestgreen'); // color is static b/c there happens to be only one phase where there are 1-way paths. if this changes, need to update
 
  // returns the combined horizontal margin, border, and padding of a DOM element
 let getHorizontalOffsets = (el) => {
@@ -81,6 +81,12 @@ let type_space = {
     'key': 0
 }
 
+let phase_colors = [
+    'forestgreen',
+    'gold',
+    'orangered'
+];
+
 for(let i = 0; i < connections.length; i++){
     for(let j = 0; j < connections[i].length; j++){
         let c = connections[i][j];
@@ -109,14 +115,15 @@ for(let i = 0; i < connections.length; i++){
         let y1n = m > 0 ? y1 + y1_d : y1 - y1_d;
         let x2n = m > 0 ? x2 - x2_d : x2 + x2_d;
         let y2n = m > 0 ? y2 - y2_d :y2 + y2_d;
-        // done shrinking
+        // done shrinking, now draw them
         let line = svg.append('line')
             .attr('x1', x1n)
             .attr('y1', y1n)
             .attr('x2', x2n)
             .attr('y2', y2n)
-            .style('stroke', 'black')
-            .style('stroke-width', 2);
+            .style('stroke', phase_colors[Math.max(n1.phase, n2.phase)-1])
+            .style('stroke-width', 5);
+        // if not the default 2-way line type
         if(c.t == 1 || c.t == 2){
             line.attr('stroke-dasharray', '5, 5');
             if(c.t == 1){
@@ -125,12 +132,6 @@ for(let i = 0; i < connections.length; i++){
         }
     }
 }
-
-let phase_colors = [
-    'green',
-    'yellow',
-    'red'
-];
 
 for(let i = 0; i < nodes.length; i++){
     let n = nodes[i];

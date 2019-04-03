@@ -694,7 +694,7 @@ let nodes = [
         'type': 'encounter',
         'icon': 'default.png',
         'phase': 2,
-        'x': 2495,
+        'x': 2945,
         'y': 1254
     },
     { // 93
@@ -724,8 +724,8 @@ let nodes = [
         'type': 'encounter',
         'icon': 'default.png',
         'phase': 2,
-        'x': 3460,
-        'y': 1130
+        'x': 3480,
+        'y': 1080
     },
     { // 97
         'name': 'SHICHIMEN',
