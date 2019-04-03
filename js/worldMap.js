@@ -9,7 +9,7 @@ let nodes = [
     { // 1
         'name': 'OWL',
         'type': 'encounter_mjr',
-        'icon': 'default.png',
+        'icon': 'owl_icon.png',
         'phase': 2,
         'x': 289,
         'y': 827
@@ -17,7 +17,7 @@ let nodes = [
     { // 2
         'name': 'LADY BUTTERFLY',
         'type': 'encounter_mjr',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 475,
         'y': 791
@@ -27,23 +27,24 @@ let nodes = [
         'type': 'shrine',
         'phase': 1,
         'x': 433,
-        'y': 1043
+        'y': 1043,
+        'items': ['bead_hug']
     },
     { // 4
         'name': 'GLUTTON',
         'type': 'encounter',
-        'icon': 'default.png',
         'phase': 2,
         'x': 257,
-        'y': 1100
+        'y': 1100,
+        'items': ['bead']
     },
     { // 5
         'name': 'GLUTTON',
         'type': 'encounter',
-        'icon': 'default.png',
         'phase': 1,
         'x': 315,
-        'y': 1175
+        'y': 1175,
+        'items': ['bead']
     },
     { // 6
         'name': 'MAIN HALL',
@@ -62,18 +63,19 @@ let nodes = [
     { // 8
         'name': 'SHADOW',
         'type': 'encounter',
-        'icon': 'default.png',
         'phase': 2,
         'x': 575,
-        'y': 1220
+        'y': 1220,
+        'items': ['bead']
     },
     { // 9
         'name': 'SPEAR',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 355,
-        'y': 1400
+        'y': 1400,
+        'items': ['bead']
     },
     { // 10
         'name': 'ESTATE PATH',
@@ -113,10 +115,11 @@ let nodes = [
     { // 15
         'name': 'SAMURAI',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 1140,
-        'y': 1730
+        'y': 1730,
+        'items': ['bead', 'seed']
     },
     { // 16
         'name': 'OUTSKIRTS WALL STAIRWAY',
@@ -128,7 +131,7 @@ let nodes = [
     { // 17
         'name': 'DEMON OF HATRED',
         'type': 'encounter_mjr',
-        'icon': 'default.png',
+        
         'phase': 3,
         'x': 720,
         'y': 1625
@@ -136,26 +139,29 @@ let nodes = [
     { // 18
         'name': 'OGRE',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 935,
-        'y': 1437
+        'y': 1437,
+        'items': ['bead', 'scroll']
     },
     { // 19
         'name': 'GLUTTON',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 3,
         'x': 827,
-        'y': 1440
+        'y': 1440,
+        'items': ['bead']
     },
     { // 20
         'name': 'SAMURAI',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 911,
-        'y': 1333
+        'y': 1333,
+        'items': ['bead']
     },
     { // 21
         'name': 'UNDERBRIDGE VALLEY',
@@ -174,7 +180,7 @@ let nodes = [
     { // 23
         'name': 'GYOUBU',
         'type': 'encounter_mjr',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 773,
         'y': 987
@@ -189,10 +195,11 @@ let nodes = [
     { // 25
         'name': 'BULL',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 1083,
-        'y': 735
+        'y': 735,
+        'items': ['bead']
     },
     { // 26
         'name': 'ASHINA CASTLE',
@@ -204,18 +211,20 @@ let nodes = [
     { // 27
         'name': 'SAMURAI',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 1230,
-        'y': 800
+        'y': 800,
+        'items': ['bead']
     },
     { // 28
         'name': 'OGRE',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 2,
         'x': 1195,
-        'y': 890
+        'y': 890,
+        'items': ['bead', 'scroll']
     },
     { // 29
         'name': 'NEAR SECRET PASSAGE',
@@ -227,7 +236,7 @@ let nodes = [
     { // 30
         'name': 'GENICHIRO & ISSHIN, SWORD SAINT',
         'type': 'encounter_mjr',
-        'icon': 'default.png',
+        
         'phase': 3,
         'x': 1050,
         'y': 300
@@ -249,26 +258,29 @@ let nodes = [
     { // 33
         'name': 'ELITE',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 3,
         'x': 1325,
-        'y': 185
+        'y': 185,
+        'items': ['bead']
     },
     { // 34
         'name': 'SHADOW',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 2,
         'x': 1640,
-        'y': 130
+        'y': 130,
+        'items': ['bead']
     },
     { // 35
         'name': 'ELITE',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 1660,
-        'y': 237
+        'y': 237,
+        'items': ['bead']
     },
     { // 36
         'name': 'CASTLE TOWER LOOKOUT',
@@ -280,7 +292,7 @@ let nodes = [
     { // 37
         'name': 'EMMA & ISSHIN ASHINA',
         'type': 'encounter_mjr',
-        'icon': 'default.png',
+        
         'phase': 2,
         'x': 2375,
         'y': 250
@@ -288,7 +300,7 @@ let nodes = [
     { // 38
         'name': 'OWL',
         'type': 'encounter_mjr',
-        'icon': 'default.png',
+        'icon': 'owl_icon.png',
         'phase': 2,
         'x': 2110,
         'y': 350
@@ -308,12 +320,13 @@ let nodes = [
         'y': 1170
     },
     { // 41
-        'name': 'HEADLESS (UNGO)',
+        'name': 'HEADLESS',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 1300,
-        'y': 1100
+        'y': 1100,
+        'items': ['ungo']
     },
     { // 42
         'name': 'GREAT SERPENT SHRINE',
@@ -325,10 +338,11 @@ let nodes = [
     { // 43
         'name': 'SHADOW',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 2,
         'x': 1280,
-        'y': 1530
+        'y': 1530,
+        'items': ['bead']
     },
     { // 44
         'name': 'UNDER-SHRINE VALLEY',
@@ -338,12 +352,13 @@ let nodes = [
         'y': 1610
     },
     { // 45
-        'name': 'HEADLESS (GOKAN)',
+        'name': 'HEADLESS',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 1620,
-        'y': 1585
+        'y': 1585,
+        'items': ['gokan']
     },
     { // 46
         'name': 'SUNKEN VALLEY',
@@ -355,10 +370,11 @@ let nodes = [
     { // 47
         'name': 'SNIPER',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 1585,
-        'y': 1800
+        'y': 1800,
+        'items': ['bead']
     },
     { // 48
         'name': 'GUN FORT',
@@ -370,15 +386,16 @@ let nodes = [
     { // 49
         'name': 'CENTIPEDE',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 1637,
-        'y': 1931
+        'y': 1931,
+        'items': ['bead']
     },
     { // 50
         'name': '',
         'type': 'key',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 1740,
         'y': 2000
@@ -400,7 +417,7 @@ let nodes = [
     { // 53
         'name': 'GUARDIAN APE',
         'type': 'encounter_mjr',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 2335,
         'y': 1960
@@ -448,12 +465,13 @@ let nodes = [
         'y': 760
     },
     { // 60
-        'name': 'HEADLESS (AKO)',
+        'name': 'HEADLESS',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 1975,
-        'y': 835
+        'y': 835,
+        'items': ['ako']
     },
     { // 61
         'name': 'SUNKEN VALLEY CAVERN',
@@ -465,10 +483,11 @@ let nodes = [
     { // 62
         'name': 'KNIGHT',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 2515,
-        'y': 745
+        'y': 745,
+        'items': ['bead']
     },
     { // 63
         'name': 'TEMPLE GROUNDS',
@@ -487,15 +506,16 @@ let nodes = [
     { // 65
         'name': 'CENTIPEDE',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 2613,
-        'y': 413
+        'y': 413,
+        'items': ['bead']
     },
     { // 66
         'name': 'MONKEYS',
         'type': 'encounter_mjr',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 2950,
         'y': 320
@@ -503,7 +523,7 @@ let nodes = [
     { // 67
         'name': 'INNER SANCTUM',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 3195,
         'y': 235
@@ -518,41 +538,45 @@ let nodes = [
     { // 69 (lol)
         'name': 'SPEAR',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 1560,
-        'y': 945
+        'y': 945,
+        'items': ['bead']
     },
     { // 70
         'name': 'SPEAR & SAMURAI',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 3,
         'x': 1590,
-        'y': 1030
+        'y': 1030,
+        'items': ['bead']
     },
     { // 71
         'name': 'SHADOW',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
-        'x': 1640,
-        'y': 1215
+        'x': 1630,
+        'y': 1205,
+        'items': ['bead']
     },
     { // 72
         'name': 'BOTTOMLESS HOLE',
         'type': 'shrine',
         'phase': 1,
-        'x': 1700,
-        'y': 1300
+        'x': 1725,
+        'y': 1325
     },
     { // 73
         'name': 'SHICHIMEN',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 1877,
-        'y': 1246
+        'y': 1246,
+        'items': ['tanto']
     },
     { // 74
         'name': 'ASHINA DEPTHS',
@@ -571,26 +595,29 @@ let nodes = [
     { // 76
         'name': 'SNIPER',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 2300,
-        'y': 1520
+        'y': 1520,
+        'items': ['bead']
     },
     { // 77
         'name': 'DUAL APES',
         'type': 'encounter_mjr',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 2400,
-        'y': 1375
+        'y': 1375,
+        'items': ['bead', 'bead']
     },
     { // 78
         'name': 'SHICHIMEN',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 2540,
-        'y': 1365
+        'y': 1365,
+        'items': ['malcontent']
     },
     { // 79
         'name': 'HIDDEN FOREST',
@@ -600,25 +627,27 @@ let nodes = [
         'y': 1340
     },
     { // 80
-        'name': 'HEADLESS (GAICHIIN)',
+        'name': 'HEADLESS',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 2837,
-        'y': 1420
+        'y': 1420,
+        'items': ['gaichiin']
     },
     { // 81
         'name': 'GLUTTON',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 2750,
-        'y': 1485
+        'y': 1485,
+        'items': ['bead']
     },
     { // 82
         'name': 'NOBLE',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 2575,
         'y': 1535
@@ -640,15 +669,16 @@ let nodes = [
     { // 85
         'name': 'O\'RIN',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 2830,
-        'y': 1725
+        'y': 1725,
+        'items': ['bead', 'scroll']
     },
     { // 86
         'name': 'CORRUPTED MONK',
         'type': 'encounter_mjr',
-        'icon': 'default.png',
+        'icon': 'monk.png',
         'phase': 1,
         'x': 2941,
         'y': 1890
@@ -670,7 +700,7 @@ let nodes = [
     { // 89
         'name': 'TRUE MONK',
         'type': 'encounter_mjr',
-        'icon': 'default.png',
+        'icon': 'monk.png',
         'phase': 2,
         'x': 3625,
         'y': 1695
@@ -692,10 +722,11 @@ let nodes = [
     { // 92
         'name': 'BULL',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 2,
         'x': 2945,
-        'y': 1254
+        'y': 1254,
+        'items': ['bead']
     },
     { // 93
         'name': 'FLOWER VIEWING STAGE',
@@ -712,28 +743,31 @@ let nodes = [
         'y': 1110
     },
     { // 95
-        'name': 'HEADLESS (YASHI)',
+        'name': 'HEADLESS',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 2,
         'x': 3260,
-        'y': 1215
+        'y': 1215,
+        'items': ['yashi']
     },
     { // 96
         'name': 'OKAMI',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 2,
         'x': 3480,
-        'y': 1080
+        'y': 1080,
+        'items': ['bead']
     },
     { // 97
         'name': 'SHICHIMEN',
         'type': 'encounter',
-        'icon': 'default.png',
+        
         'phase': 2,
         'x': 3330,
-        'y': 890
+        'y': 890,
+        'items': ['azurite']
     },
     { // 98
         'name': 'PALACE GROUNDS',
@@ -766,7 +800,7 @@ let nodes = [
     { // 102
         'name': 'DIVINE DRAGON',
         'type': 'encounter_mjr',
-        'icon': 'default.png',
+        
         'phase': 2,
         'x': 3500,
         'y': 320
@@ -774,7 +808,7 @@ let nodes = [
     { // 103
         'name': 'GENICHIRO ASHINA',
         'type': 'encounter_mjr',
-        'icon': 'default.png',
+        
         'phase': 1,
         'x': 1940,
         'y': 440

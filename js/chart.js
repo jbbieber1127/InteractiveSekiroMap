@@ -67,9 +67,7 @@ redraw();
 window.addEventListener('resize', redraw);
 
 // begin drawing
-console.log(nodes); // data object
-console.log(connections);
-
+// background
 svg.append('image')
     .attr('xlink:href', 'images/background.jpg');
 
@@ -79,13 +77,29 @@ let type_space = {
     'encounter': 40,
     'shrine': 80,
     'key': 0
-}
+};
 
 let phase_colors = [
     'forestgreen',
     'gold',
     'orangered'
 ];
+
+let image_dir = 'images/';
+let item_icons = {
+    ako: "ako.png", //
+    azurite: "azurite.png", //
+    bead: "bead.png", // 
+    bead_hug: "bead_hug.png", // 
+    gaichiin: "gaichiin.png", //
+    gokan: "gokan.png", //
+    malcontent: "malcontent.png", //
+    scroll: "scroll.png", //
+    seed: "seed.png", //
+    tanto: "tanto.png", // 
+    ungo: "ungo.png", //
+    yashi: "yashi.png" //
+};
 
 for(let i = 0; i < connections.length; i++){
     for(let j = 0; j < connections[i].length; j++){
@@ -132,7 +146,6 @@ for(let i = 0; i < connections.length; i++){
         }
     }
 }
-
 for(let i = 0; i < nodes.length; i++){
     let n = nodes[i];
     let type = n.type;
@@ -141,10 +154,16 @@ for(let i = 0; i < nodes.length; i++){
     let y = n.y;
     let name = n.name;
     if(type == 'shrine'){
-        svg.append('image')
-            .attr('x', x - 18) // 18 is half the image width
-            .attr('y', y - 41 - 25) // 41 is half the image height
-            .attr('xlink:href', 'images/shrine_discovered.png');
+        let img = new Image();
+        img.onload = () => {
+            let height = img.height;
+            let width = img.width;
+            svg.append('image')
+                .attr('x', x - width/2)
+                .attr('y', y - height/2 - 25) // 25 is an arbitrary offset for style
+                .attr('xlink:href', img.src);
+        };
+        img.src = image_dir + 'shrine_discovered.png';
         svg.append('circle')
             .attr('cx', x)
             .attr('cy', y)
@@ -159,6 +178,25 @@ for(let i = 0; i < nodes.length; i++){
             .attr('r', 40)
             .attr('opacity', 0.5)
             .attr('fill', phase_colors[phase - 1]);
+        if(n.items && n.items.length > 0 && (true || n.name == 'KNIGHT' || n.name == 'O\'RIN')){
+            let item_div = svg.append('g');
+            let total_width = 0;
+            for(let imd = 0; imd < n.items.length; imd++){
+                let item = n.items[imd];
+                let url = image_dir + item_icons[item];
+                let img = new Image();
+                img.onload = () => {
+                    let width = parseInt(img.width);
+                    item_div.append('image')
+                        .attr('xlink:href', url)
+                        .attr('x', total_width);
+                    total_width = total_width + width;
+                    item_div.attr('transform', 'translate(' + (x - 0.5*total_width) + ',' + (y - 5) + ')');
+                };
+                img.src = url;
+                console.log(total_width);
+            }
+        }
     }else if(type == 'encounter_mjr'){
         svg.append('circle')
             .attr('cx', x)
@@ -170,7 +208,7 @@ for(let i = 0; i < nodes.length; i++){
     // create the labels
     let text = svg.append('text')
         .attr('x', x - 100)
-        .attr('y', y + (type == 'shrine' ? 20 : 0))
+        .attr('y', y + (type == 'shrine' ? 20 : (type == 'encounter' ? - (5 + 30*(name.length/10)) : 0)))
         .attr('font-size', 25);
     text.text(name);
     let wrap = d3.textwrap().bounds({height: 200, width: 200});
