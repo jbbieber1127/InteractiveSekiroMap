@@ -55,15 +55,93 @@ window.addEventListener('resize', redraw);
 
 // begin drawing
 console.log(nodes); // data object
-console.log(connections)
+console.log(connections);
 
-svg.selectAll('circle').data(nodes).enter().append('circle')
-    .attr('cx', function(d){ return d.x; })
-    .attr('cy', function(d){ return d.y; })
-    .attr('r', 35);
+svg.append('image')
+    .attr('xlink:href', 'images/background.jpg');
 
 for(let i = 0; i < connections.length; i++){
     for(let j = 0; j < connections[i].length; j++){
-        // svg.append()
+        let c = connections[i][j];
+        let n1 = nodes[i];
+        let n2 = nodes[c.id];
+        // shrink the lines towards the center to free up space near nodes
+        let x1 = n1.x;
+        let y1 = n1.y;
+        let x2 = n2.x;
+        let y2 = n2.y;
+        let dx = (x2 - x1) == 0 ? 0.00001 : (x2 - x1);
+        let dy = y2 - y1;
+        let m = dy/dx;
+        let a = Math.atan(m);
+        let ld1 = 100;
+        let ld2 = 0;
+        let x1_d = Math.cos(a)*ld1;
+        let y1_d = Math.sin(a)*ld1;
+        let x2_d = Math.cos(a)*ld2;
+        let y2_d = Math.sin(a)*ld2;
+        let x1n = m > 0 ? x1 + x1_d : x1 - x1_d;
+        let y1n = m > 0 ? y1 + y1_d : y1 - y1_d;
+        let x2n = m > 0 ? x2 - x2_d : x2 + x2_d;
+        let y2n = m > 0 ? y2 - y2_d : y2 + y2_d;
+        if(n1.name=='POISON POOL'){
+            console.log(c);
+            console.log(x1);
+            console.log(y1);
+            console.log(x2);
+            console.log(y2);
+            console.log('-----');
+            console.log(x1n);
+            console.log(y1n);
+            console.log(x2n);
+            console.log(y2n);
+        }
+        // done shrinking
+        svg.append('line')
+            .attr('x1', x1n)
+            .attr('y1', y1n)
+            .attr('x2', x2n)
+            .attr('y2', y2n)
+            .style('stroke', 'black')
+            .style('stroke-width', 2);
     }
+}
+
+let phase_colors = [
+    'green',
+    'yellow',
+    'red'
+];
+
+for(let i = 0; i < nodes.length; i++){
+    let n = nodes[i];
+    let type = n.type;
+    let phase = n.phase;
+    let x = n.x;
+    let y = n.y;
+    let name = n.name;
+    if(type == 'shrine'){
+        svg.append('image')
+            .attr('x', x - 18) // 18 is half the image width
+            .attr('y', y - 41 - 25) // 41 is half the image height
+            .attr('xlink:href', 'images/shrine_discovered.png');
+    }else if(type == 'encounter'){
+        svg.append('circle')
+            .attr('cx', x)
+            .attr('cy', y)
+            .attr('r', 40)
+            .attr('opacity', 0.5)
+            .attr('fill', phase_colors[phase - 1]);
+    }else if(type == 'encounter_mjr'){
+        svg.append('circle')
+            .attr('cx', x)
+            .attr('cy', y)
+            .attr('r', 80)
+            .attr('opacity', 0.5)
+            .attr('fill', phase_colors[phase - 1]);
+    }
+    svg.append('text')
+        .attr('x', x)
+        .attr('y', y)
+        .text(name);
 }
