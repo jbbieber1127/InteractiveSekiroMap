@@ -60,6 +60,14 @@ console.log(connections);
 svg.append('image')
     .attr('xlink:href', 'images/background.jpg');
 
+
+let type_space = {
+    'encounter_mjr': 80,
+    'encounter': 40,
+    'shrine': 40,
+    'key': 0
+}
+
 for(let i = 0; i < connections.length; i++){
     for(let j = 0; j < connections[i].length; j++){
         let c = connections[i][j];
@@ -73,29 +81,21 @@ for(let i = 0; i < connections.length; i++){
         let dx = (x2 - x1) == 0 ? 0.00001 : (x2 - x1);
         let dy = y2 - y1;
         let m = dy/dx;
-        let a = Math.atan(m);
-        let ld1 = 100;
-        let ld2 = 0;
+        let a = (Math.atan(m) % (2*Math.PI));
+        a = a < 0 ? 2*Math.PI + a : a;
+        let ld1 = n1.space ? n1.space : type_space[n1.type];
+        let ld2 = n2.space ? n2.space : type_space[n2.type];
         let x1_d = Math.cos(a)*ld1;
         let y1_d = Math.sin(a)*ld1;
         let x2_d = Math.cos(a)*ld2;
         let y2_d = Math.sin(a)*ld2;
+        if(y1 > y2){ // corrects longer lines
+            m = -m;
+        }
         let x1n = m > 0 ? x1 + x1_d : x1 - x1_d;
         let y1n = m > 0 ? y1 + y1_d : y1 - y1_d;
         let x2n = m > 0 ? x2 - x2_d : x2 + x2_d;
-        let y2n = m > 0 ? y2 - y2_d : y2 + y2_d;
-        if(n1.name=='POISON POOL'){
-            console.log(c);
-            console.log(x1);
-            console.log(y1);
-            console.log(x2);
-            console.log(y2);
-            console.log('-----');
-            console.log(x1n);
-            console.log(y1n);
-            console.log(x2n);
-            console.log(y2n);
-        }
+        let y2n = m > 0 ? y2 - y2_d :y2 + y2_d;
         // done shrinking
         svg.append('line')
             .attr('x1', x1n)
@@ -143,5 +143,8 @@ for(let i = 0; i < nodes.length; i++){
     svg.append('text')
         .attr('x', x)
         .attr('y', y)
+        .attr('font-size', 25)
+        .style('text-anchor', 'middle')
+        .style('alignment-baseline', 'middle')
         .text(name);
 }
