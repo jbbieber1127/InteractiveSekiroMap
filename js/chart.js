@@ -12,6 +12,8 @@ svgDiv.classed('align', true);
 
 let sideBar = content.append('div')
     .style('padding-left', '15px')
+    .style('padding-right', '15px')
+    .style('padding-top', '15px')
     .style('overflow-y', 'scroll');
 sideBar.classed('align', true);
 
@@ -49,7 +51,7 @@ let getHorizontalOffsets = (el) => {
 }
 
 let redraw = () => { // deals with window resize
-    sideBar.style('height', svgDiv.node().clientHeight + 'px');
+    sideBar.style('height', (svgDiv.node().clientHeight - getVerticalOffsets(sideBar.node())) + 'px');
     // extra 1 for good measure
     let offsets = 1 + getHorizontalOffsets(d3.select('body').node()) + getHorizontalOffsets(content.node()) +
         getHorizontalOffsets(sideBar.node()) + 
@@ -303,6 +305,27 @@ drawMap();
 let buildSideBar = () => {
     sideBar.html('');
     sideBar.style('background', 'lightgray');
+    let show_all = sideBar.append('button');
+    show_all.on('click', () => {
+        showing = 3;
+        for(let i = 0; i < discovered.length; i++){
+            discovered[i] = true;
+        }
+        drawMap();
+        buildSideBar();
+    });
+    show_all.text('Show All');
+    let hide_all = sideBar.append('button');
+    hide_all.on('click', () => {
+        showing = 1;
+        for(let i = 0; i < discovered.length; i++){
+            discovered[i] = false;
+        }
+        discovered[12] = true;
+        drawMap();
+        buildSideBar();
+    });
+    hide_all.text('Hide All');
     let controls = sideBar.append('div');
     controls.append('h1').text('Phases:');
     let phase_form = controls.append("form");
@@ -354,7 +377,7 @@ let buildSideBar = () => {
         if(!display_header){
             continue;
         }
-        let zone_header = shrine_div.append('p').text('- ' + key)
+        let zone_header = shrine_div.append('p').text('+ ' + key)
             .style('font-weight', '900').style('cursor', 'pointer');
         let zone = shrine_div.append('div');
         zone.style('margin-bottom', '20px')
@@ -365,7 +388,7 @@ let buildSideBar = () => {
             let cur_disp = zone.style('display');
             let new_disp = cur_disp == 'none' ? '' : 'none';
             zone.style('display', new_disp);
-            zone_header.text((new_disp == 'none' ? '- ' : '+ ') + key);
+            zone_header.text((new_disp == 'none' ? '+ ' : '- ') + key);
         });
 
         for(let i = 0; i < val.length; i++){

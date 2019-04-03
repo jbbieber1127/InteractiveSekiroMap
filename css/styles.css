@@ -1,5 +1,4 @@
 .align {
-    /* padding: 1em; */
     display: inline-block;
     overflow: hidden;
 }
@@ -7,7 +6,6 @@
 foreignObject div {
     text-align: center;
     display: table-cell;
-    /* vertical-align: middle; */
     height: 200px;
     width: 200px;
     font-size: 25px;
@@ -15,4 +13,8 @@ foreignObject div {
 
 foreignObject {
     display: table;
+}
+
+button {
+    width: 50%;
 }
