@@ -434,9 +434,10 @@ let buildSideBar = () => {
 
     controls.append('h1').text('Save/Load Data');
     let data = {
-        'discovered': JSON.stringify(discovered),
-        'phase': JSON.stringify(showing)
+        'discovered': discovered,
+        'phase': showing
     };
+    controls.append('p').text('Copy to clipboard').style('font-weight', '900');
     let save_to_clip = controls.append('button');
     save_to_clip.style('width', '95%');
     save_to_clip.text('Save to Clipboard');
@@ -449,6 +450,23 @@ let buildSideBar = () => {
         document.body.removeChild(el);
         save_to_clip.text('Saved!');
         redraw();redraw(); // call it twice as a temp workaround
+    });
+    controls.append('p').text('Load from clipboard').style('font-weight', '900');
+    let load_from_clip = controls.append('input');
+    load_from_clip.attr('type', 'text');
+    let exe_load_clip = controls.append('button');
+    exe_load_clip.text('Load');
+    exe_load_clip.style('display', 'inline-block');
+    exe_load_clip.on('click', () => {
+        try{
+            let parsed = JSON.parse(load_from_clip.property('value'));
+            discovered = parsed.discovered;
+            showing = parsed.phase;
+            drawMap();
+            buildSideBar();
+        }catch(error){
+            console.log("Bad json parse" + error);
+        }
     });
 }
 buildSideBar();
