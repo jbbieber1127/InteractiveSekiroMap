@@ -3,3 +3,14 @@ div {
     display: inline-block;
     overflow: hidden;
 }
+
+foreignObject div {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    height: 120px;
+}
+
+foreignObject {
+    display: table;
+}

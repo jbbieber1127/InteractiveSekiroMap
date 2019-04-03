@@ -140,11 +140,11 @@ for(let i = 0; i < nodes.length; i++){
             .attr('opacity', 0.5)
             .attr('fill', phase_colors[phase - 1]);
     }
-    svg.append('text')
-        .attr('x', x)
-        .attr('y', y)
-        .attr('font-size', 25)
-        .style('text-anchor', 'middle')
-        .style('alignment-baseline', 'middle')
-        .text(name);
+    let text = svg.append('text')
+        .attr('x', x - 60)
+        .attr('y', y - 60)
+        .attr('font-size', 25);
+    text.text(name);
+    let wrap = d3.textwrap().bounds({height: 120, width: 120});
+    let fO = text.call(wrap);
 }
