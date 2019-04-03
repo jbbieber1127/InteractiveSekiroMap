@@ -1,19 +1,16 @@
 // init
 let body = d3.select('body');
 let content = body.append('div')
-    .style('border', '1px solid blue')
     .style('width', '100%')
     .classed('parent', true);
 
 // container for svg
 let svgDiv = content.append('div')
-    .style('border', '1px dashed black')
     .style('width', '80%')
     .classed('svg-container', true);
 svgDiv.classed('align', true);
 
 let sideBar = content.append('div')
-    .style('border', '1px solid black')
     .style('padding-left', '15px')
     .style('overflow-y', 'scroll');
 sideBar.classed('align', true);
@@ -24,6 +21,14 @@ let svg = svgDiv
 svg.attr('preserveAspectRatio', 'xMinYMin meet')
     .attr('viewBox', '0 0 3840 2160')
     .classed('svg-content-responsive', true);
+
+// an outline for hovering over the index
+let outline = svg.append('circle')
+                .attr('r', 140)
+                .style('fill', 'none')
+                .style('stroke-width', 10)
+                .style('stroke', 'black')
+                .style('display', 'none');
 
  // returns the combined horizontal margin, border, and padding of a DOM element
 let getHorizontalOffsets = (el) => {
@@ -86,15 +91,63 @@ let item_icons = {
 };
 
 // which phases to show initially
-let showing = 3;
+let showing = 1;
+
+let should_display = (id) => {
+    let display_self = discovered[id];
+    // if this node is discovered, then display it
+    if(!display_self){
+        // if this node is revealed by a discovered node, then display this node
+        let revealed_by = nodes[id].revealed_by;
+        if(revealed_by){
+            for(let r = 0; r < revealed_by.length; r++){
+                if(discovered[revealed_by[r]]){
+                    return true;
+                }
+            }
+        }
+        for(let d = 0; d < discovered.length; d++){
+            // if we are on ourself or the node hasn't been discovered, then move on to the next node
+            if(d == id || !discovered[d]){
+                continue;
+            }
+            let cx = connections[d];
+            for(let c = 0; c < cx.length; c++){
+                if(cx[c].id == id){// if something that connects to this node is discovered, then display this node (depending on connection type)
+                    if(cx[c].t <= 1){
+                        return true;
+                    }
+                }
+            }
+        }
+        let my_c = connections[id];
+        for(let c = 0; c < my_c.length; c++){
+            if(discovered[my_c[c].id]){
+                //if we are connected to a discovered node, then display this node (depending on connection type)
+                if(my_c[c].t == 0){
+                    return true;
+                }
+            }
+        }
+    }else{
+        return true;
+    }
+}
 
 let drawMap = () => {
-    //clear old images
+    // clear old images
     svg.html('');
     // begin drawing updated map
     // background
     svg.append('image')
         .attr('xlink:href', 'images/background.jpg');
+    // make a new outline
+    outline = svg.append('circle')
+                .attr('r', 140)
+                .style('fill', 'none')
+                .style('stroke-width', 10)
+                .style('stroke', 'black')
+                .style('display', 'none');
     // add an arrowpoint marker def for later
     let defs = svg.append('defs');
     let arrowMarker = defs.append('marker');
@@ -116,7 +169,7 @@ let drawMap = () => {
             let c = connections[i][j];
             let n1 = nodes[i];
             let n2 = nodes[c.id];
-            if(showing < n1.phase || showing < n2.phase){
+            if((showing < n1.phase || showing < n2.phase) || !should_display(i) || !should_display(c.id)){
                 continue;
             }
             // shrink the lines towards the center to free up space near nodes
@@ -166,7 +219,8 @@ let drawMap = () => {
         let x = n.x;
         let y = n.y;
         let name = n.name;
-        if(showing < phase){
+        // determine if we should display the node
+        if(showing < phase || !should_display(i)){
             continue;
         }
         if(type == 'shrine'){
@@ -289,6 +343,17 @@ let buildSideBar = () => {
     let shrine_div = controls.append('div');
     for(let key in index){
         let val = index[key];
+        let display_header = false; // hide areas that are not in the current phase
+        for(let i = 0; i < val.length; i++){
+            let n = nodes[val[i]];
+            if(n.phase <= showing){
+                display_header = true;
+                break;
+            }
+        }
+        if(!display_header){
+            continue;
+        }
         let zone_header = shrine_div.append('p').text('- ' + key)
             .style('font-weight', '900').style('cursor', 'pointer');
         let zone = shrine_div.append('div');
@@ -315,17 +380,10 @@ let buildSideBar = () => {
                 .text(n.name);
             txt.style('cursor', 'pointer').style("pointer-events","visible");
 
-            let outline = svg.append('circle')
-                .attr('cx', n.x)
-                .attr('cy', n.y)
-                .attr('r', 140)
-                .style('fill', 'none')
-                .style('stroke-width', 10)
-                .style('stroke', 'black')
-                .style('display', 'none');
-
             let mouseover = () => {
                 console.log('ya');
+                outline.attr('cx', n.x)
+                outline.attr('cy', n.y)
                 outline.style('display', '');
             }
 
