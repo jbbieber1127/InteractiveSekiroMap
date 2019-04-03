@@ -437,7 +437,6 @@ let buildSideBar = () => {
         'discovered': discovered,
         'phase': showing
     };
-    controls.append('p').text('Copy to clipboard').style('font-weight', '900');
     let save_to_clip = controls.append('button');
     save_to_clip.style('width', '95%');
     save_to_clip.text('Save to Clipboard');
@@ -453,7 +452,8 @@ let buildSideBar = () => {
     });
     controls.append('p').text('Load from clipboard').style('font-weight', '900');
     let load_from_clip = controls.append('input');
-    load_from_clip.attr('type', 'text');
+    load_from_clip.attr('type', 'text')
+        .style('width', '45%');
     let exe_load_clip = controls.append('button');
     exe_load_clip.text('Load');
     exe_load_clip.style('display', 'inline-block');
