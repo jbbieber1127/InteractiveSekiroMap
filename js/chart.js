@@ -13,10 +13,11 @@ let svgDiv = content.append('div')
 
 // responsive svg
 let svg = svgDiv
-    .append('svg')
-        .attr('preserveAspectRatio', 'xMinYMin meet')
-        .attr('viewBox', '0 0 3840 2160')
-        .classed('svg-content-responsive');
+    .append('svg');
+
+svg.attr('preserveAspectRatio', 'xMinYMin meet')
+    .attr('viewBox', '0 0 3840 2160')
+    .classed('svg-content-responsive');
 
  // returns the combined horizontal margin, border, and padding of a DOM element
 let getHorizontalOffsets = (el) => {
@@ -53,4 +54,16 @@ redraw();
 window.addEventListener('resize', redraw);
 
 // begin drawing
-console.log(worldMap); // data object
+console.log(nodes); // data object
+console.log(connections)
+
+svg.selectAll('circle').data(nodes).enter().append('circle')
+    .attr('cx', function(d){ return d.x; })
+    .attr('cy', function(d){ return d.y; })
+    .attr('r', 35);
+
+for(let i = 0; i < connections.length; i++){
+    for(let j = 0; j < connections[i].length; j++){
+        // svg.append()
+    }
+}
