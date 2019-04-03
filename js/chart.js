@@ -246,57 +246,87 @@ let drawMap = () => {
 drawMap();
 
 // build the side bar
-sideBar.style('background', 'lightgray');
-let controls = sideBar.append('div');
-controls.append('h1').text('Phases:');
-let phase_form = controls.append("form");
-let p1cb = phase_form.append('input')
-    .attr('type', 'radio')
-    .attr('name', 'phase')
-    .property('checked', showing == 1);
-    p1cb.on('change', () => {
-        showing = 1;
-        drawMap();
-    });
-    phase_form.append('label').text('Phase 1');
-let p2cb = phase_form.append('input')
-    .attr('type', 'radio')
-    .attr('name', 'phase')
-    .property('checked', showing == 2);
-    p2cb.text('Phase 2');
-    p2cb.on('change', () => {
-        showing = 2;
-        drawMap();
-    });
-    phase_form.append('label').text('Phase 2');
-let p3cb = phase_form.append('input')
-    .attr('type', 'radio')
-    .attr('name', 'phase')
-    .property('checked', showing == 3);
-    p3cb.text('Phase 3');
-    p3cb.on('change', () => {
-        showing = 3;
-        drawMap();
-    });
-    phase_form.append('label').text('Phase 3');
-controls.append('h1').text('Discovered:');
-let index = {
-    'Ashina Outskirts': [24, 22, 21, 16, 14, 13, 12],
-    'Ashina Castle': [39, 36, 32, 31, 26, 40, 68, 29, 55, 42],
-    'Abandoned Dungeon': [72, 56],
-    'Senpou Temple, Mt. Kongo': [67, 64, 63, 58, 59, 61, 57],
-    'Sunken Valley': [44, 46, 48, 51, 52, 54],
-    'Ashina Depths': [74, 75, 79, 83, 84, 87],
-    'Fountainhead Palace': [88, 90, 91, 93, 94, 98, 99, 100, 101],
-    'Hirata Estate': [11, 10, 7, 6, 3, 0]
-};
-let shrine_div = controls.append('div');
-for(let key in index){
-    let val = index[key];
-    let zone = shrine_div.append('div');
-    zone.append('text').text(key).style('font-weight', '900');
-    for(let i = 0; i < val.length; i++){
-        let n = nodes[val[i]];
-        zone.append('p').text(n.name)
+let buildSideBar = () => {
+    sideBar.html('');
+    sideBar.style('background', 'lightgray');
+    let controls = sideBar.append('div');
+    controls.append('h1').text('Phases:');
+    let phase_form = controls.append("form");
+    let p1cb = phase_form.append('input')
+        .attr('type', 'radio')
+        .attr('name', 'phase')
+        .property('checked', showing == 1);
+        p1cb.on('change', () => {
+            showing = 1;
+            drawMap();
+            buildSideBar();
+        });
+        phase_form.append('label').text('Phase 1');
+    let p2cb = phase_form.append('input')
+        .attr('type', 'radio')
+        .attr('name', 'phase')
+        .property('checked', showing == 2);
+        p2cb.text('Phase 2');
+        p2cb.on('change', () => {
+            showing = 2;
+            drawMap();
+            buildSideBar();
+        });
+        phase_form.append('label').text('Phase 2');
+    let p3cb = phase_form.append('input')
+        .attr('type', 'radio')
+        .attr('name', 'phase')
+        .property('checked', showing == 3);
+        p3cb.text('Phase 3');
+        p3cb.on('change', () => {
+            showing = 3;
+            drawMap();
+            buildSideBar();
+        });
+        phase_form.append('label').text('Phase 3');
+    controls.append('h1').text('Discovered:');
+
+    let shrine_div = controls.append('div');
+    for(let key in index){
+        let val = index[key];
+        let zone_header = shrine_div.append('p').text('- ' + key)
+            .style('font-weight', '900').style('cursor', 'pointer');
+        let zone = shrine_div.append('div');
+        zone.style('margin-bottom', '20px')
+            .style('display', 'none');
+
+        zone_header.on('click', () => {
+            
+        });
+
+        for(let i = 0; i < val.length; i++){
+            let n = nodes[val[i]];
+            let shrine = zone.append('div');
+            shrine.style('padding-left', '10px');
+            let img = shrine.append('img')
+                .attr('src', image_dir + (discovered[val[i]] ? 'shrine_discovered.png' : 'shrine_undiscovered.png'))
+                .attr('height', 30);
+            img.style('cursor', 'pointer').style("pointer-events","visible");
+            let txt = shrine.append('text')
+                .text(n.name);
+            txt.style('cursor', 'pointer').style("pointer-events","visible");
+
+            let mouseover = () => {
+
+            }
+
+            let mouseout = () => {
+
+            }
+
+            let click = () => {
+                discovered[val[i]] = !discovered[val[i]];
+                img.attr('src', image_dir + (discovered[val[i]] ? 'shrine_discovered.png' : 'shrine_undiscovered.png'));
+                drawMap();
+            };
+            txt.on('click', click);
+            img.on('click', click);   
+        }
     }
 }
+buildSideBar();
