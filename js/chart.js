@@ -56,7 +56,7 @@ let type_space = {
     'encounter_mjr': 80,
     'encounter': 40,
     'shrine': 80,
-    'key': 0
+    'key': 30
 };
 
 let phase_colors = [
@@ -83,11 +83,6 @@ let item_icons = {
 
 // which phases to show initially
 let showing = 3;
-
-let out = '[';
-for(let q = 0; q < 103; q++){
-    out += '';
-}
 
 let drawMap = () => {
     //clear old images
@@ -220,6 +215,17 @@ let drawMap = () => {
                 .attr('r', 80)
                 .attr('opacity', 0.5)
                 .attr('fill', phase_colors[phase - 1]);
+        }else if(type == 'key'){
+            let img = new Image();
+            img.onload = () => {
+                let height = img.height;
+                let width = img.width;
+                svg.append('image')
+                    .attr('x', x - width/2)
+                    .attr('y', y - height/2) // 25 is an arbitrary offset for style
+                    .attr('xlink:href', img.src);
+            };
+            img.src = image_dir + 'key.png';
         }
         // create the labels
         let text = svg.append('text')

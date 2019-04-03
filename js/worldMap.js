@@ -404,7 +404,7 @@ let nodes = [
         'name': 'RIVEN CAVE',
         'type': 'shrine',
         'phase': 1,
-        'x': 1850,
+        'x': 1900,
         'y': 2013
     },
     { // 52
