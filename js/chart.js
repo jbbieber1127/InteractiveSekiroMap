@@ -295,8 +295,12 @@ let buildSideBar = () => {
         zone.style('margin-bottom', '20px')
             .style('display', 'none');
 
+        // toggle displaying a zone's shrine index on click
         zone_header.on('click', () => {
-            
+            let cur_disp = zone.style('display');
+            let new_disp = cur_disp == 'none' ? '' : 'none';
+            zone.style('display', new_disp);
+            zone_header.text((new_disp == 'none' ? '- ' : '+ ') + key);
         });
 
         for(let i = 0; i < val.length; i++){
@@ -312,7 +316,7 @@ let buildSideBar = () => {
             txt.style('cursor', 'pointer').style("pointer-events","visible");
 
             let mouseover = () => {
-
+                
             }
 
             let mouseout = () => {
