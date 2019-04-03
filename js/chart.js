@@ -14,10 +14,23 @@ let svgDiv = content.append('div')
 // responsive svg
 let svg = svgDiv
     .append('svg');
-
 svg.attr('preserveAspectRatio', 'xMinYMin meet')
     .attr('viewBox', '0 0 3840 2160')
     .classed('svg-content-responsive');
+// add an arrowpoint marker def for later
+let defs = svg.append('defs');
+let arrowMarker = defs.append('marker');
+arrowMarker.attr('id', 'arrow')
+    .attr('markerWidth', 50)
+    .attr('markerHeight', 100)
+    .attr('refX', 0)
+    .attr('refY', 3)
+    .attr('orient', 'auto')
+    .attr('markerUnits', 'strokeWidth')
+    .attr('viewBox', '0 0 20 20');
+let arrowMarkerPath = arrowMarker.append('path');
+arrowMarkerPath.attr('d', 'M0,0 L0,6 L9,3 z')
+    .attr('fill', 'black');
 
  // returns the combined horizontal margin, border, and padding of a DOM element
 let getHorizontalOffsets = (el) => {
@@ -64,7 +77,7 @@ svg.append('image')
 let type_space = {
     'encounter_mjr': 80,
     'encounter': 40,
-    'shrine': 40,
+    'shrine': 80,
     'key': 0
 }
 
@@ -84,7 +97,7 @@ for(let i = 0; i < connections.length; i++){
         let a = (Math.atan(m) % (2*Math.PI));
         a = a < 0 ? 2*Math.PI + a : a;
         let ld1 = n1.space ? n1.space : type_space[n1.type];
-        let ld2 = n2.space ? n2.space : type_space[n2.type];
+        let ld2 = (n2.space ? n2.space : type_space[n2.type]) + (c.t == 1 ? 50 : 0);
         let x1_d = Math.cos(a)*ld1;
         let y1_d = Math.sin(a)*ld1;
         let x2_d = Math.cos(a)*ld2;
@@ -97,13 +110,19 @@ for(let i = 0; i < connections.length; i++){
         let x2n = m > 0 ? x2 - x2_d : x2 + x2_d;
         let y2n = m > 0 ? y2 - y2_d :y2 + y2_d;
         // done shrinking
-        svg.append('line')
+        let line = svg.append('line')
             .attr('x1', x1n)
             .attr('y1', y1n)
             .attr('x2', x2n)
             .attr('y2', y2n)
             .style('stroke', 'black')
             .style('stroke-width', 2);
+        if(c.t == 1 || c.t == 2){
+            line.attr('stroke-dasharray', '5, 5');
+            if(c.t == 1){
+                line.attr('marker-end', 'url(#arrow)');
+            }
+        }
     }
 }
 
@@ -125,6 +144,13 @@ for(let i = 0; i < nodes.length; i++){
             .attr('x', x - 18) // 18 is half the image width
             .attr('y', y - 41 - 25) // 41 is half the image height
             .attr('xlink:href', 'images/shrine_discovered.png');
+        svg.append('circle')
+            .attr('cx', x)
+            .attr('cy', y)
+            .attr('r', type_space['shrine'])
+            .attr('fill', 'none')
+            .attr('stroke-width', 5)
+            .attr('stroke', 'LightBlue');
     }else if(type == 'encounter'){
         svg.append('circle')
             .attr('cx', x)
@@ -140,11 +166,12 @@ for(let i = 0; i < nodes.length; i++){
             .attr('opacity', 0.5)
             .attr('fill', phase_colors[phase - 1]);
     }
+    // create the labels
     let text = svg.append('text')
-        .attr('x', x - 60)
-        .attr('y', y - 60)
+        .attr('x', x - 100)
+        .attr('y', y + (type == 'shrine' ? 20 : 0))
         .attr('font-size', 25);
     text.text(name);
-    let wrap = d3.textwrap().bounds({height: 120, width: 120});
-    let fO = text.call(wrap);
+    let wrap = d3.textwrap().bounds({height: 200, width: 200});
+    text.call(wrap);
 }

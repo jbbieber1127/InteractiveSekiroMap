@@ -7,8 +7,10 @@ div {
 foreignObject div {
     text-align: center;
     display: table-cell;
-    vertical-align: middle;
-    height: 120px;
+    /* vertical-align: middle; */
+    height: 200px;
+    width: 200px;
+    font-size: 25px;
 }
 
 foreignObject {
