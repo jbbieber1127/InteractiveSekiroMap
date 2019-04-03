@@ -35,15 +35,15 @@ let nodes = [
         'type': 'encounter',
         'phase': 2,
         'x': 257,
-        'y': 1100,
+        'y': 1050,
         'items': ['bead']
     },
     { // 5
         'name': 'GLUTTON',
         'type': 'encounter',
         'phase': 1,
-        'x': 315,
-        'y': 1175,
+        'x': 305,
+        'y': 1135,
         'items': ['bead']
     },
     { // 6
@@ -64,9 +64,10 @@ let nodes = [
         'name': 'SHADOW',
         'type': 'encounter',
         'phase': 2,
-        'x': 575,
-        'y': 1220,
-        'items': ['bead']
+        'x': 605,
+        'y': 1200,
+        'items': ['bead'],
+        'revealed_by': [7]
     },
     { // 9
         'name': 'SPEAR',
@@ -148,20 +149,20 @@ let nodes = [
     { // 19
         'name': 'GLUTTON',
         'type': 'encounter',
-        
         'phase': 3,
         'x': 827,
         'y': 1440,
-        'items': ['bead']
+        'items': ['bead'],
+        'revealed_by': [18]
     },
     { // 20
         'name': 'SAMURAI',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 911,
         'y': 1333,
-        'items': ['bead']
+        'items': ['bead'],
+        'revealed_by': [18]
     },
     { // 21
         'name': 'UNDERBRIDGE VALLEY',
@@ -180,7 +181,6 @@ let nodes = [
     { // 23
         'name': 'GYOUBU',
         'type': 'encounter_mjr',
-        
         'phase': 1,
         'x': 773,
         'y': 987
@@ -195,7 +195,6 @@ let nodes = [
     { // 25
         'name': 'BULL',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 1083,
         'y': 735,
@@ -211,20 +210,20 @@ let nodes = [
     { // 27
         'name': 'SAMURAI',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 1230,
         'y': 800,
-        'items': ['bead']
+        'items': ['bead'],
+        'revealed_by': [24]
     },
     { // 28
         'name': 'OGRE',
         'type': 'encounter',
-        
         'phase': 2,
         'x': 1195,
         'y': 890,
-        'items': ['bead', 'scroll']
+        'items': ['bead', 'scroll'],
+        'revealed_by': [26, 40]
     },
     { // 29
         'name': 'NEAR SECRET PASSAGE',
@@ -258,11 +257,11 @@ let nodes = [
     { // 33
         'name': 'ELITE',
         'type': 'encounter',
-        
         'phase': 3,
-        'x': 1325,
-        'y': 185,
-        'items': ['bead']
+        'x': 1305,
+        'y': 155,
+        'items': ['bead'],
+        'revealed_by': [32]
     },
     { // 34
         'name': 'SHADOW',
@@ -322,11 +321,11 @@ let nodes = [
     { // 41
         'name': 'HEADLESS',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 1300,
         'y': 1100,
-        'items': ['ungo']
+        'items': ['ungo'],
+        'revealed_by': [26, 40]
     },
     { // 42
         'name': 'GREAT SERPENT SHRINE',
@@ -338,11 +337,11 @@ let nodes = [
     { // 43
         'name': 'SHADOW',
         'type': 'encounter',
-        
         'phase': 2,
         'x': 1280,
         'y': 1530,
-        'items': ['bead']
+        'items': ['bead'],
+        'revealed_by': [42]
     },
     { // 44
         'name': 'UNDER-SHRINE VALLEY',
@@ -354,11 +353,11 @@ let nodes = [
     { // 45
         'name': 'HEADLESS',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 1620,
         'y': 1585,
-        'items': ['gokan']
+        'items': ['gokan'],
+        'revealed_by': [44]
     },
     { // 46
         'name': 'SUNKEN VALLEY',
@@ -370,11 +369,11 @@ let nodes = [
     { // 47
         'name': 'SNIPER',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 1585,
         'y': 1800,
-        'items': ['bead']
+        'items': ['bead'],
+        'revealed_by': [46]
     },
     { // 48
         'name': 'GUN FORT',
@@ -467,11 +466,11 @@ let nodes = [
     { // 60
         'name': 'HEADLESS',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 1975,
         'y': 835,
-        'items': ['ako']
+        'items': ['ako'],
+        'revealed_by': [59]
     },
     { // 61
         'name': 'SUNKEN VALLEY CAVERN',
@@ -506,11 +505,11 @@ let nodes = [
     { // 65
         'name': 'CENTIPEDE',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 2613,
         'y': 413,
-        'items': ['bead']
+        'items': ['bead'],
+        'revealed_by': [63]
     },
     { // 66
         'name': 'MONKEYS',
@@ -541,21 +540,21 @@ let nodes = [
         'phase': 1,
         'x': 1560,
         'y': 945,
-        'items': ['bead']
+        'items': ['bead'],
+        'revealed_by': [26, 68, 71]
     },
     { // 70
         'name': 'SPEAR & SAMURAI',
         'type': 'encounter',
-        
         'phase': 3,
         'x': 1590,
         'y': 1030,
-        'items': ['bead']
+        'items': ['bead'],
+        'revealed_by': [68, 71]
     },
     { // 71
         'name': 'SHADOW',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 1630,
         'y': 1205,
@@ -571,11 +570,11 @@ let nodes = [
     { // 73
         'name': 'SHICHIMEN',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 1877,
         'y': 1246,
-        'items': ['tanto']
+        'items': ['tanto'],
+        'revealed_by': [72]
     },
     { // 74
         'name': 'ASHINA DEPTHS',
@@ -603,20 +602,20 @@ let nodes = [
     { // 77
         'name': 'DUAL APES',
         'type': 'encounter_mjr',
-        
         'phase': 1,
         'x': 2400,
         'y': 1375,
-        'items': ['bead', 'bead']
+        'items': ['bead', 'bead'],
+        'revealed_by': [76]
     },
     { // 78
         'name': 'SHICHIMEN',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 2540,
         'y': 1365,
-        'items': ['malcontent']
+        'items': ['malcontent'],
+        'revealed_by': [77]
     },
     { // 79
         'name': 'HIDDEN FOREST',
@@ -628,25 +627,24 @@ let nodes = [
     { // 80
         'name': 'HEADLESS',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 2837,
         'y': 1420,
-        'items': ['gaichiin']
+        'items': ['gaichiin'],
+        'revealed_by': [79]
     },
     { // 81
         'name': 'GLUTTON',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 2750,
         'y': 1485,
-        'items': ['bead']
+        'items': ['bead'],
+        'revealed_by': [79]
     },
     { // 82
         'name': 'NOBLE',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 2575,
         'y': 1535
@@ -668,11 +666,11 @@ let nodes = [
     { // 85
         'name': 'O\'RIN',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 2830,
         'y': 1725,
-        'items': ['bead', 'scroll']
+        'items': ['bead', 'scroll'],
+        'revealed_by': [84]
     },
     { // 86
         'name': 'CORRUPTED MONK',
@@ -721,11 +719,11 @@ let nodes = [
     { // 92
         'name': 'BULL',
         'type': 'encounter',
-        
         'phase': 2,
         'x': 2945,
         'y': 1254,
-        'items': ['bead']
+        'items': ['bead'],
+        'revealed_by': [91, 93]
     },
     { // 93
         'name': 'FLOWER VIEWING STAGE',
@@ -744,29 +742,29 @@ let nodes = [
     { // 95
         'name': 'HEADLESS',
         'type': 'encounter',
-        
         'phase': 2,
         'x': 3260,
         'y': 1215,
-        'items': ['yashi']
+        'items': ['yashi'],
+        'revealed_by': [96]
     },
     { // 96
         'name': 'OKAMI',
         'type': 'encounter',
-        
         'phase': 2,
         'x': 3480,
         'y': 1080,
-        'items': ['bead']
+        'items': ['bead'],
+        'revealed_by': [91, 94] // you see the okami from anywhere in the area
     },
     { // 97
         'name': 'SHICHIMEN',
         'type': 'encounter',
-        
         'phase': 2,
         'x': 3330,
         'y': 890,
-        'items': ['azurite']
+        'items': ['azurite'],
+        'revealed_by': [94]
     },
     { // 98
         'name': 'PALACE GROUNDS',
@@ -799,21 +797,17 @@ let nodes = [
     { // 102
         'name': 'DIVINE DRAGON',
         'type': 'encounter_mjr',
-        
         'phase': 2,
         'x': 3500,
         'y': 320
     },
     { // 103
-        'name': 'GENICHIRO ASHINA',
+        'name': 'GENICHIRO ASHINA', // missed it earlier
         'type': 'encounter_mjr',
-        
         'phase': 1,
         'x': 1940,
         'y': 440
     },
-    
-
 ];
 
 // types (t): 0=2-way, 1=1-way, 2=2-way(dashed)
@@ -839,7 +833,7 @@ let connections = [
     [{'t': 0, id: 21}], // 18
     [], // 19
     [], // 20
-    [], // 21
+    [{'t': 0, id: 22}], // 21
     [{'t': 0, id: 23}], // 22
     [{'t': 0, id: 24}], // 23
     [{'t': 0, id: 25}], // 24
@@ -922,4 +916,9 @@ let connections = [
     [{'t': 0, id: 102}], // 101
     [], // 102
     [], // 103
+];
+
+// todo fill in with various stray items
+let astray = [
+    {}
 ];

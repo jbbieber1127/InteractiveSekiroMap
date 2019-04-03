@@ -10,13 +10,20 @@ let svgDiv = content.append('div')
     .style('border', '1px dashed black')
     .style('width', '80%')
     .classed('svg-container', true);
+svgDiv.classed('align', true);
+
+let sideBar = content.append('div')
+    .style('border', '1px solid black')
+    .style('padding-left', '15px')
+    .style('overflow-y', 'scroll');
+sideBar.classed('align', true);
 
 // responsive svg
 let svg = svgDiv
     .append('svg');
 svg.attr('preserveAspectRatio', 'xMinYMin meet')
     .attr('viewBox', '0 0 3840 2160')
-    .classed('svg-content-responsive');
+    .classed('svg-content-responsive', true);
 
  // returns the combined horizontal margin, border, and padding of a DOM element
 let getHorizontalOffsets = (el) => {
@@ -39,15 +46,12 @@ let getHorizontalOffsets = (el) => {
 let redraw = () => { // deals with window resize
     sideBar.style('height', svgDiv.node().clientHeight + 'px');
     // extra 1 for good measure
-    let offsets = 1 + getHorizontalOffsets(d3.select('body').node()) + getHorizontalOffsets(content.node()) + 
-        parseInt(sideBar.style('border-left')) + parseInt(sideBar.style('border-right')) + 
-        parseInt(sideBar.style('margin-left')) + parseInt(sideBar.style('margin-right')) + 
+    let offsets = 1 + getHorizontalOffsets(d3.select('body').node()) + getHorizontalOffsets(content.node()) +
+        getHorizontalOffsets(sideBar.node()) + 
         parseInt(svgDiv.style('margin-left')) + parseInt(svgDiv.style('margin-right'));
     sideBar.style('width', (document.documentElement.clientWidth - svgDiv.node().clientWidth - offsets) + 'px')
 }
 
-let sideBar = content.append('div')
-    .style('border', '1px solid black');
 
 redraw();
 window.addEventListener('resize', redraw);
@@ -242,8 +246,9 @@ let drawMap = () => {
 drawMap();
 
 // build the side bar
+sideBar.style('background', 'lightgray');
 let controls = sideBar.append('div');
-controls.append('h1').text('Phases');
+controls.append('h1').text('Phases:');
 let phase_form = controls.append("form");
 let p1cb = phase_form.append('input')
     .attr('type', 'radio')
@@ -274,3 +279,24 @@ let p3cb = phase_form.append('input')
         drawMap();
     });
     phase_form.append('label').text('Phase 3');
+controls.append('h1').text('Discovered:');
+let index = {
+    'Ashina Outskirts': [24, 22, 21, 16, 14, 13, 12],
+    'Ashina Castle': [39, 36, 32, 31, 26, 40, 68, 29, 55, 42],
+    'Abandoned Dungeon': [72, 56],
+    'Senpou Temple, Mt. Kongo': [67, 64, 63, 58, 59, 61, 57],
+    'Sunken Valley': [44, 46, 48, 51, 52, 54],
+    'Ashina Depths': [74, 75, 79, 83, 84, 87],
+    'Fountainhead Palace': [88, 90, 91, 93, 94, 98, 99, 100, 101],
+    'Hirata Estate': [11, 10, 7, 6, 3, 0]
+};
+let shrine_div = controls.append('div');
+for(let key in index){
+    let val = index[key];
+    let zone = shrine_div.append('div');
+    zone.append('text').text(key).style('font-weight', '900');
+    for(let i = 0; i < val.length; i++){
+        let n = nodes[val[i]];
+        zone.append('p').text(n.name)
+    }
+}
