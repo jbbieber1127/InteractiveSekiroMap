@@ -309,7 +309,9 @@ let buildSideBar = () => {
     show_all.on('click', () => {
         showing = 3;
         for(let i = 0; i < discovered.length; i++){
-            discovered[i] = true;
+            if(nodes[i].type == 'shrine'){
+                discovered[i] = true;
+            }
         }
         drawMap();
         buildSideBar();
