@@ -420,6 +420,7 @@ let buildSideBar = () => {
                 discovered[val[i]] = !discovered[val[i]];
                 img.attr('src', image_dir + (discovered[val[i]] ? 'shrine_discovered.png' : 'shrine_undiscovered.png'));
                 drawMap();
+                save_to_clip.text('Save to Clipboard');
             };
 
             txt.on('click', click);
@@ -430,5 +431,24 @@ let buildSideBar = () => {
             img.on('mouseout', mouseout);
         }
     }
+
+    controls.append('h1').text('Save/Load Data');
+    let data = {
+        'discovered': JSON.stringify(discovered),
+        'phase': JSON.stringify(showing)
+    };
+    let save_to_clip = controls.append('button');
+    save_to_clip.style('width', '95%');
+    save_to_clip.text('Save to Clipboard');
+    save_to_clip.on('click', () => {
+        const el = document.createElement('textarea');
+        el.value = JSON.stringify(data);
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        save_to_clip.text('Saved!');
+        redraw();redraw(); // call it twice as a temp workaround
+    });
 }
 buildSideBar();
