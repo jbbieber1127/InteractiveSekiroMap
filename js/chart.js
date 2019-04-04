@@ -78,9 +78,9 @@ let type_space = {
 // colors.
 
 let phase_colors = [
-    '#004D40',
-    '#FFC107',
-    '#D81B60'
+    '#0C481A',
+    '#5D56FF',
+    '#FFC107'
 ]
 
 // let phase_colors = [
