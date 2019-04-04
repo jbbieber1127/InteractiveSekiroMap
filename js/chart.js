@@ -265,6 +265,14 @@ let drawMap = () => {
         if(showing < phase || !should_display(i)){
             continue;
         }
+
+        let click = () => {
+            discovered[i] = !discovered[i];
+            buildSideBar();
+            drawMap();
+            console.log(name);
+        };
+
         if(type == 'shrine'){
             if(discovered[i]){
                 let img = new Image();
@@ -274,7 +282,9 @@ let drawMap = () => {
                     svg.append('image')
                         .attr('x', x - width/2)
                         .attr('y', y - height/2 - 25) // 25 is an arbitrary offset for style
-                        .attr('xlink:href', img.src);
+                        .attr('xlink:href', img.src)
+                        .style('cursor', 'pointer')
+                        .on('click', click);
                 };
                 img.src = image_dir + 'shrine_discovered.png';
                 svg.append('circle')
@@ -292,7 +302,9 @@ let drawMap = () => {
                     svg.append('image')
                         .attr('x', x - width/2)
                         .attr('y', y - height/2 - 25) // 25 is an arbitrary offset for style
-                        .attr('xlink:href', img.src);
+                        .attr('xlink:href', img.src)
+                        .style('cursor', 'pointer')
+                        .on('click', click);
                 };
                 img.src = image_dir + 'shrine_undiscovered.png';
             }
@@ -302,8 +314,10 @@ let drawMap = () => {
                 .attr('cy', y)
                 .attr('r', 40)
                 .attr('opacity', 0.5)
-                .attr('fill', phase_colors[phase - 1]);
-            if(n.items && n.items.length > 0 && (true || n.name == 'KNIGHT' || n.name == 'O\'RIN')){
+                .attr('fill', phase_colors[phase - 1])
+                .style('cursor', 'pointer')
+                .on('click', click);
+            if(n.items && n.items.length > 0){
                 let item_div = svg.append('g');
                 let total_width = 0;
                 for(let imd = 0; imd < n.items.length; imd++){
@@ -314,7 +328,9 @@ let drawMap = () => {
                         let width = parseInt(img.width);
                         item_div.append('image')
                             .attr('xlink:href', url)
-                            .attr('x', total_width);
+                            .attr('x', total_width)
+                            .style('cursor', 'pointer')
+                            .on('click', click);
                         total_width = total_width + width;
                         item_div.attr('transform', 'translate(' + (x - 0.5*total_width) + ',' + (y - 5) + ')');
                     };
@@ -327,7 +343,9 @@ let drawMap = () => {
                 .attr('cy', y)
                 .attr('r', 80)
                 .attr('opacity', 0.5)
-                .attr('fill', phase_colors[phase - 1]);
+                .attr('fill', phase_colors[phase - 1])
+                .style('cursor', 'pointer')
+                .on('click', click);
         }else if(type == 'key'){
             let img = new Image();
             img.onload = () => {
@@ -336,7 +354,9 @@ let drawMap = () => {
                 svg.append('image')
                     .attr('x', x - width/2)
                     .attr('y', y - height/2)
-                    .attr('xlink:href', img.src);
+                    .attr('xlink:href', img.src)
+                    .style('cursor', 'pointer')
+                    .on('click', click);
             };
             img.src = image_dir + 'key.png';
         }else if(type == 'item'){
@@ -347,24 +367,28 @@ let drawMap = () => {
                 svg.append('image')
                     .attr('x', x - width/2)
                     .attr('y', y - height/2)
-                    .attr('xlink:href', img.src);
+                    .attr('xlink:href', img.src)
+                    .style('cursor', 'pointer')
+                    .on('click', click);
             };
             img.src = image_dir + item_icons[n.items[0]];
         }else if(type == 'merchant'){
             let merch = svg.append('text');
             merch.attr('x', x).attr('y', y);
             merch.text('$$$');
-            merch.style('font-size', 25);
+            merch.style('font-size', 25)
+            .style('cursor', 'pointer')
+            .on('click', click);
         }
         // create the labels
-        let text = svg.append('text')
+        let fObj = svg.append('foreignObject')
             .attr('x', x - 100)
-            // calculate x and y offsets based on node type and other attributes
             .attr('y', y + (type == 'shrine' ? 20 : (type == 'encounter' ? - (5 + 30*(name.length/10)) : 0)))
-            .attr('font-size', 25);
-        text.text(name);
-        let wrap = d3.textwrap().bounds({height: 200, width: 200});
-        text.call(wrap);
+            .attr('width', 200)
+            .attr('height', 100)
+            .attr('requiredFeatures', 'http://www.w3.org/TR/SVG11/feature#Extensibility');
+        let text = fObj.append('xhtml:div').style('cursor', 'pointer').text(name);
+        text.on('click', click);
     }
 }
 
@@ -475,7 +499,6 @@ let buildSideBar = () => {
             txt.style('cursor', 'pointer').style("pointer-events","visible");
 
             let mouseover = () => {
-                console.log('ya');
                 outline.attr('cx', n.x)
                 outline.attr('cy', n.y)
                 outline.style('display', '');
