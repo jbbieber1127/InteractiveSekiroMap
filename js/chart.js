@@ -354,7 +354,8 @@ let drawMap = () => {
                     svg.append('image')
                         .attr('x', x - width/2)
                         .attr('y', y - height/2)
-                        .attr('xlink:href', img.src);
+                        .attr('xlink:href', img.src)
+                        .attr('pointer-events', 'none');
                 };
                 img.src = image_dir + 'execution.png';
             }
