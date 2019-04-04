@@ -309,14 +309,17 @@ let drawMap = () => {
                 img.src = image_dir + 'shrine_undiscovered.png';
             }
         }else if(type == 'encounter'){
-            svg.append('circle')
+            let el = svg.append('circle')
                 .attr('cx', x)
                 .attr('cy', y)
                 .attr('r', 40)
-                .attr('opacity', 0.5)
+                .attr('opacity', 0.75)
                 .attr('fill', phase_colors[phase - 1])
                 .style('cursor', 'pointer')
                 .on('click', click);
+            if(discovered[i]){
+                el.style('opacity', 0.35);
+            }
             if(n.items && n.items.length > 0){
                 let item_div = svg.append('g');
                 let total_width = 0;
@@ -336,13 +339,16 @@ let drawMap = () => {
                     };
                     img.src = url;
                 }
+                if(discovered[i]){
+                    item_div.style('opacity', 0.35);
+                }
             }
         }else if(type == 'encounter_mjr'){
-            svg.append('circle')
+            let el = svg.append('circle')
                 .attr('cx', x)
                 .attr('cy', y)
                 .attr('r', 80)
-                .attr('opacity', 0.5)
+                .attr('opacity', 0.75)
                 .attr('fill', phase_colors[phase - 1])
                 .style('cursor', 'pointer')
                 .on('click', click);
@@ -358,6 +364,7 @@ let drawMap = () => {
                         .attr('pointer-events', 'none');
                 };
                 img.src = image_dir + 'execution.png';
+                el.style('opacity', 0.35);
             }
         }else if(type == 'key'){
             let img = new Image();
@@ -395,6 +402,21 @@ let drawMap = () => {
             merch.style('font-size', 25)
             .style('cursor', 'pointer')
             .on('click', click);
+            if(discovered[i]){
+                let img = new Image();
+                img.onload = () => {
+                    let height = img.height;
+                    let width = img.width;
+                    svg.append('image')
+                        .attr('x', x - width/2)
+                        .attr('y', y - height/2 - 25)
+                        .attr('xlink:href', img.src)
+                        .attr('pointer-events', 'none')
+                        .style('opacity', 0.35);
+                };
+                img.src = image_dir + 'met.png';
+                merch.style('opacity', 0.35);
+            }
         }
         // create the labels
         if(type != 'item' && type != 'merchant'){
@@ -425,9 +447,7 @@ let buildSideBar = () => {
     show_all.on('click', () => {
         showing = 3;
         for(let i = 0; i < discovered.length; i++){
-            if(nodes[i].type == 'shrine'){
-                discovered[i] = true;
-            }
+            discovered[i] = true;
         }
         drawMap();
         buildSideBar();
