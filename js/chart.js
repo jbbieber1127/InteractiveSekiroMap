@@ -346,6 +346,18 @@ let drawMap = () => {
                 .attr('fill', phase_colors[phase - 1])
                 .style('cursor', 'pointer')
                 .on('click', click);
+            if(discovered[i]){
+                let img = new Image();
+                img.onload = () => {
+                    let height = img.height;
+                    let width = img.width;
+                    svg.append('image')
+                        .attr('x', x - width/2)
+                        .attr('y', y - height/2)
+                        .attr('xlink:href', img.src);
+                };
+                img.src = image_dir + 'execution.png';
+            }
         }else if(type == 'key'){
             let img = new Image();
             img.onload = () => {
@@ -364,31 +376,41 @@ let drawMap = () => {
             img.onload = () => {
                 let height = img.height;
                 let width = img.width;
-                svg.append('image')
+                let el = svg.append('image')
                     .attr('x', x - width/2)
                     .attr('y', y - height/2)
                     .attr('xlink:href', img.src)
                     .style('cursor', 'pointer')
                     .on('click', click);
+                if(discovered[i]){
+                    el.style('opacity', 0.35);
+                }
             };
             img.src = image_dir + item_icons[n.items[0]];
         }else if(type == 'merchant'){
             let merch = svg.append('text');
-            merch.attr('x', x).attr('y', y);
+            merch.attr('x', x - 18.75).attr('y', y - 12.5);
             merch.text('$$$');
             merch.style('font-size', 25)
             .style('cursor', 'pointer')
             .on('click', click);
         }
         // create the labels
-        let fObj = svg.append('foreignObject')
-            .attr('x', x - 100)
-            .attr('y', y + (type == 'shrine' ? 20 : (type == 'encounter' ? - (5 + 30*(name.length/10)) : 0)))
-            .attr('width', 200)
-            .attr('height', 100)
-            .attr('requiredFeatures', 'http://www.w3.org/TR/SVG11/feature#Extensibility');
-        let text = fObj.append('xhtml:div').style('cursor', 'pointer').text(name);
-        text.on('click', click);
+        if(type != 'item' && type != 'merchant'){
+            let fObj = svg.append('foreignObject')
+                .attr('x', x - 100)
+                .attr('y', y + (type == 'shrine' ? 20 : (type == 'encounter' ? - (5 + 30*(name.length/10)) : 0)))
+                .attr('width', 200)
+                .attr('height', 200)
+                .attr('requiredFeatures', 'http://www.w3.org/TR/SVG11/feature#Extensibility')
+                .style('pointer-events', 'none');
+            let text = fObj.append('xhtml:div')
+                .append('p')
+                    .style('margin', 0)
+                    .style('padding', 0)
+                    .style('cursor', 'pointer')
+                    .text(name);
+        }
     }
 }
 
