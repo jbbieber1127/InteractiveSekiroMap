@@ -831,7 +831,7 @@ let nodes = [
         'phase': 1,
         'x': 317,
         'y': 1669,
-        'items': ['msk_7'],
+        'items': ['mask_7'],
         'revealed_by': [11]
     },
     { // 109
