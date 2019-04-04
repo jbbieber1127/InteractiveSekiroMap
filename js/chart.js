@@ -266,23 +266,36 @@ let drawMap = () => {
             continue;
         }
         if(type == 'shrine'){
-            let img = new Image();
-            img.onload = () => {
-                let height = img.height;
-                let width = img.width;
-                svg.append('image')
-                    .attr('x', x - width/2)
-                    .attr('y', y - height/2 - 25) // 25 is an arbitrary offset for style
-                    .attr('xlink:href', img.src);
-            };
-            img.src = image_dir + 'shrine_discovered.png';
-            svg.append('circle')
-                .attr('cx', x)
-                .attr('cy', y)
-                .attr('r', type_space['shrine'])
-                .attr('fill', 'none')
-                .attr('stroke-width', 5)
-                .attr('stroke', 'LightBlue');
+            if(discovered[i]){
+                let img = new Image();
+                img.onload = () => {
+                    let height = img.height;
+                    let width = img.width;
+                    svg.append('image')
+                        .attr('x', x - width/2)
+                        .attr('y', y - height/2 - 25) // 25 is an arbitrary offset for style
+                        .attr('xlink:href', img.src);
+                };
+                img.src = image_dir + 'shrine_discovered.png';
+                svg.append('circle')
+                    .attr('cx', x)
+                    .attr('cy', y)
+                    .attr('r', type_space['shrine'])
+                    .attr('fill', 'none')
+                    .attr('stroke-width', 5)
+                    .attr('stroke', 'LightBlue');
+            }else{
+                let img = new Image();
+                img.onload = () => {
+                    let height = img.height;
+                    let width = img.width;
+                    svg.append('image')
+                        .attr('x', x - width/2)
+                        .attr('y', y - height/2 - 25) // 25 is an arbitrary offset for style
+                        .attr('xlink:href', img.src);
+                };
+                img.src = image_dir + 'shrine_undiscovered.png';
+            }
         }else if(type == 'encounter'){
             svg.append('circle')
                 .attr('cx', x)
