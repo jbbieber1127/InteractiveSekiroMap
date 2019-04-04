@@ -67,7 +67,9 @@ let type_space = {
     'encounter_mjr': 80,
     'encounter': 40,
     'shrine': 80,
-    'key': 30
+    'key': 30,
+    'item': 30,
+    'merchant': 30
 };
 
 let phase_colors = [
@@ -88,7 +90,7 @@ let item_icons = {
     'bead_hug': "bead_hug.png",
     'bead_indoor': 'bead_indoor.png',
     'bead_statue': 'bead_statue.png',
-    'bead_submerged': 'bead_submerged',
+    'bead_submerged': 'bead_submerged.png',
     'cracker_500': 'cracker_500.png',
     'fan': 'fan.png',
     'fan_1600': 'fan_1600.png',
@@ -313,6 +315,22 @@ let drawMap = () => {
                     .attr('xlink:href', img.src);
             };
             img.src = image_dir + 'key.png';
+        }else if(type == 'item'){
+            let img = new Image();
+            img.onload = () => {
+                let height = img.height;
+                let width = img.width;
+                svg.append('image')
+                    .attr('x', x - width/2)
+                    .attr('y', y - height/2) // 25 is an arbitrary offset for style
+                    .attr('xlink:href', img.src);
+            };
+            img.src = image_dir + item_icons[n.items[0]];
+        }else if(type == 'merchant'){
+            let merch = svg.append('text');
+            merch.attr('x', x).attr('y', y);
+            merch.text('$$$');
+            merch.style('font-size', 25);
         }
         // create the labels
         let text = svg.append('text')
