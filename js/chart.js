@@ -311,7 +311,7 @@ let drawMap = () => {
                 let width = img.width;
                 svg.append('image')
                     .attr('x', x - width/2)
-                    .attr('y', y - height/2) // 25 is an arbitrary offset for style
+                    .attr('y', y - height/2)
                     .attr('xlink:href', img.src);
             };
             img.src = image_dir + 'key.png';
@@ -322,7 +322,7 @@ let drawMap = () => {
                 let width = img.width;
                 svg.append('image')
                     .attr('x', x - width/2)
-                    .attr('y', y - height/2) // 25 is an arbitrary offset for style
+                    .attr('y', y - height/2)
                     .attr('xlink:href', img.src);
             };
             img.src = image_dir + item_icons[n.items[0]];
