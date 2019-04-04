@@ -72,11 +72,22 @@ let type_space = {
     'merchant': 30
 };
 
+// let accessability = d3.select('#accessability');
+// let colors = accessability.append('input');
+// let choices = ['Normal']
+// colors.
+
 let phase_colors = [
-    'forestgreen',
-    'gold',
-    'orangered'
-];
+    '#004D40',
+    '#FFC107',
+    '#D81B60'
+]
+
+// let phase_colors = [
+//     'forestgreen',
+//     'gold',
+//     'orangered'
+// ];
 
 let image_dir = 'images/';
 let item_icons = {
@@ -192,7 +203,7 @@ let drawMap = () => {
         .attr('viewBox', '0 0 20 20');
     let arrowMarkerPath = arrowMarker.append('path');
     arrowMarkerPath.attr('d', 'M0,0 L0,6 L9,3 z')
-        .attr('fill', 'forestgreen'); // color is static b/c there happens to be only one phase where there are 1-way paths. if this changes, need to update
+        .attr('fill', phase_colors[0]); // color is static b/c there happens to be only one phase where there are 1-way paths. if this changes, need to update
 
 
     for(let i = 0; i < connections.length; i++){
