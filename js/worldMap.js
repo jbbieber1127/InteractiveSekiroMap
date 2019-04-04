@@ -17,7 +17,6 @@ let nodes = [
     { // 2
         'name': 'LADY BUTTERFLY',
         'type': 'encounter_mjr',
-        
         'phase': 1,
         'x': 475,
         'y': 791
@@ -27,8 +26,7 @@ let nodes = [
         'type': 'shrine',
         'phase': 1,
         'x': 433,
-        'y': 1043,
-        'items': ['bead_hug']
+        'y': 1043
     },
     { // 4
         'name': 'GLUTTON',
@@ -72,7 +70,6 @@ let nodes = [
     { // 9
         'name': 'SPEAR',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 355,
         'y': 1400,
@@ -116,7 +113,6 @@ let nodes = [
     { // 15
         'name': 'SAMURAI',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 1140,
         'y': 1730,
@@ -132,15 +128,14 @@ let nodes = [
     { // 17
         'name': 'DEMON OF HATRED',
         'type': 'encounter_mjr',
-        
         'phase': 3,
         'x': 720,
-        'y': 1625
+        'y': 1625,
+        'items': ['2x_azurite']
     },
     { // 18
         'name': 'OGRE',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 935,
         'y': 1437,
@@ -235,7 +230,6 @@ let nodes = [
     { // 30
         'name': 'GENICHIRO & ISSHIN, SWORD SAINT',
         'type': 'encounter_mjr',
-        
         'phase': 3,
         'x': 1050,
         'y': 300
@@ -266,7 +260,6 @@ let nodes = [
     { // 34
         'name': 'SHADOW',
         'type': 'encounter',
-        
         'phase': 2,
         'x': 1640,
         'y': 130,
@@ -275,7 +268,6 @@ let nodes = [
     { // 35
         'name': 'ELITE',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 1660,
         'y': 237,
@@ -291,7 +283,6 @@ let nodes = [
     { // 37
         'name': 'EMMA & ISSHIN ASHINA',
         'type': 'encounter_mjr',
-        
         'phase': 2,
         'x': 2375,
         'y': 250
@@ -384,8 +375,7 @@ let nodes = [
     },
     { // 49
         'name': 'CENTIPEDE',
-        'type': 'encounter',
-        
+        'type': 'encounter', 
         'phase': 1,
         'x': 1637,
         'y': 1931,
@@ -394,7 +384,6 @@ let nodes = [
     { // 50
         'name': '',
         'type': 'key',
-        
         'phase': 1,
         'x': 1740,
         'y': 2000
@@ -416,10 +405,10 @@ let nodes = [
     { // 53
         'name': 'GUARDIAN APE',
         'type': 'encounter_mjr',
-        
         'phase': 1,
         'x': 2335,
-        'y': 1960
+        'y': 1960,
+        'items': ['finger']
     },
     { // 54
         'name': 'GREAT APE\'S WATERING HOLE',
@@ -482,7 +471,6 @@ let nodes = [
     { // 62
         'name': 'KNIGHT',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 2515,
         'y': 745,
@@ -514,7 +502,6 @@ let nodes = [
     { // 66
         'name': 'MONKEYS',
         'type': 'encounter_mjr',
-        
         'phase': 1,
         'x': 2950,
         'y': 320
@@ -536,7 +523,6 @@ let nodes = [
     { // 69 (lol)
         'name': 'SPEAR',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 1560,
         'y': 945,
@@ -593,7 +579,6 @@ let nodes = [
     { // 76
         'name': 'SNIPER',
         'type': 'encounter',
-        
         'phase': 1,
         'x': 2300,
         'y': 1520,
@@ -806,7 +791,367 @@ let nodes = [
         'type': 'encounter_mjr',
         'phase': 1,
         'x': 1940,
-        'y': 440
+        'y': 440,
+        'items': ['key']
+    },
+    { // 104
+        'type': 'item',
+        'phase': 1,
+        'x': 527,
+        'y': 1078,
+        'items': ['bead_hug'],
+        'revealed_by': [3]
+    },
+    { // 105
+        'type': 'item',
+        'phase': 1,
+        'x': 283,
+        'y': 1351,
+        'items': ['feather'],
+        'revealed_by': [9]
+    },
+    { // 106
+        'type': 'item',
+        'phase': 1,
+        'x': 463,
+        'y': 1451,
+        'items': ['axe'],
+        'revealed_by': [10]
+    },
+    { // 107
+        'type': 'item',
+        'phase': 1,
+        'x': 393,
+        'y': 1541,
+        'items': ['fire'],
+        'revealed_by': [10]
+    },
+    { // 108
+        'type': 'item',
+        'phase': 1,
+        'x': 317,
+        'y': 1669,
+        'items': ['msk_7'],
+        'revealed_by': [11]
+    },
+    { // 109
+        'type': 'merchant',
+        'phase': 1,
+        'x': 719,
+        'y': 1989,
+        'revealed_by': [12]
+    },
+    { // 110
+        'type': 'item',
+        'phase': 1,
+        'x': 771,
+        'y': 2055,
+        'items': ['seed_2k']
+    },
+    { // 111
+        'type': 'item',
+        'phase': 1,
+        'x': 1237,
+        'y': 1783,
+        'items': ['shuriken'],
+        'revealed_by': [94]
+    },
+    { // 112
+        'type': 'merchant',
+        'phase': 1,
+        'x': 1087,
+        'y': 1665,
+        'revealed_by': [94]
+    },
+    { // 113
+        'type': 'item',
+        'phase': 1,
+        'x': 979,
+        'y': 1649,
+        'items': ['cracker_500']
+    },
+    { // 114
+        'type': 'merchant',
+        'phase': 1,
+        'x': 995,
+        'y': 1503,
+        'revealed_by': [16]
+    },
+    { // 115
+        'type': 'item',
+        'phase': 1,
+        'x': 887,
+        'y': 1487,
+        'items': ['seed'],
+        'revealed_by': [18]
+    },
+    { // 116
+        'type': 'item',
+        'phase': 1,
+        'x': 939,
+        'y': 885,
+        'items': ['bead_indoor'],
+        'revealed_by': [23]
+    },
+    { // 117
+        'type': 'item',
+        'phase': 1,
+        'x': 1005,
+        'y': 873,
+        'items': ['scroll'],
+        'revealed_by': [23]
+    },
+    { // 118
+        'type': 'merchant',
+        'phase': 1,
+        'x': 853,
+        'y': 767,
+        'revealed_by': [23]
+    },
+    { // 119
+        'type': 'item',
+        'phase': 1,
+        'x': 869,
+        'y': 647,
+        'items': ['cracker_500']
+    },
+    { // 120
+        'type': 'item',
+        'phase': 1,
+        'x': 787,
+        'y': 677,
+        'items': ['seed_1k']
+    },
+    { // 121
+        'type': 'item',
+        'phase': 1,
+        'x': 1450,
+        'y': 800,
+        'items': ['sabimaru'],
+        'revealed_by': [26]
+    },
+    { // 122
+        'type': 'item',
+        'phase': 1,
+        'x': 1407,
+        'y': 979,
+        'items': ['spear'],
+        'revealed_by': [26]
+    },
+    { // 123
+        'type': 'merchant',
+        'phase': 1,
+        'x': 1195,
+        'y': 1250,
+        'revealed_by': [40]
+    },
+    { // 124
+        'type': 'item',
+        'phase': 1,
+        'x': 1131,
+        'y': 1333,
+        'items': ['fan_1600']
+    },
+    { // 125
+        'type': 'item',
+        'phase': 1,
+        'x': 1207,
+        'y': 1341,
+        'items': ['scroll_1200']
+    },
+    { // 126
+        'type': 'item',
+        'phase': 1,
+        'x': 1573,
+        'y': 1685,
+        'items': ['bead'],
+        'revealed_by': [44]
+    },
+    { // 127
+        'type': 'item',
+        'phase': 1,
+        'x': 1695,
+        'y': 1675,
+        'items': ['seed'],
+        'revealed_by': [44]
+    },
+    { // 128
+        'type': 'item',
+        'phase': 1,
+        'x': 1573,
+        'y': 2015,
+        'items': ['bead'],
+        'revealed_by': [48]
+    },
+    { // 129
+        'type': 'item',
+        'phase': 1,
+        'x': 1627,
+        'y': 2065,
+        'items': ['fan'],
+        'revealed_by': [49]
+    },
+    { // 130
+        'type': 'merchant',
+        'phase': 1,
+        'x': 2113,
+        'y': 1997,
+        'revealed_by': [52]
+    },
+    { // 131
+        'type': 'item',
+        'phase': 1,
+        'x': 2155,
+        'y': 1769,
+        'items': ['snake_dry'],
+        'revealed_by': [52]
+    },
+    { // 132
+        'type': 'item',
+        'phase': 1,
+        'x': 2243,
+        'y': 1625,
+        'items': ['bead_statue'],
+        'revealed_by': [75]
+    },
+    { // 133
+        'type': 'merchant',
+        'phase': 1,
+        'x': 2419,
+        'y': 1731,
+        'revealed_by': [83]
+    },
+    { // 134
+        'type': 'item',
+        'phase': 1,
+        'x': 2527,
+        'y': 1733,
+        'items': ['bead_submerged'],
+        'revealed_by': [83]
+    },
+    { // 135
+        'type': 'item',
+        'phase': 1,
+        'x': 2663,
+        'y': 1657,
+        'items': ['seed_tree'],
+        'revealed_by': [83]
+    },
+    { // 136
+        'type': 'item',
+        'phase': 1,
+        'x': 2785,
+        'y': 1913,
+        'items': ['bead_indoor'],
+        'revealed_by': [84]
+    },
+    { // 137
+        'type': 'item',
+        'phase': 2,
+        'x': 3145,
+        'y': 1219,
+        'items': ['bead_submerged'],
+        'revealed_by': [96]
+    },
+    { // 138
+        'type': 'item',
+        'phase': 2,
+        'x': 3300,
+        'y': 800,
+        'items': ['seed_indoor'],
+        'revealed_by': [98]
+    },
+    { // 139
+        'type': 'item',
+        'phase': 2,
+        'x': 2891,
+        'y': 907,
+        'items': ['2az_6ea'],
+        'revealed_by': [99]
+    },
+    { // 140
+        'type': 'item',
+        'phase': 2,
+        'x': 2811,
+        'y': 895,
+        'items': ['mask_12'],
+        'revealed_by': [99]
+    },
+    { // 141
+        'type': 'item',
+        'phase': 1,
+        'x': 1413,
+        'y': 490,
+        'items': ['bead_hug'],
+        'revealed_by': [31]
+    },
+    { // 142
+        'type': 'item',
+        'phase': 1,
+        'x': 1600,
+        'y': 520,
+        'items': ['seed'],
+        'revealed_by': [31]
+    },
+    { // 143
+        'type': 'merchant',
+        'phase': 1,
+        'x': 1763,
+        'y': 750,
+        'revealed_by': [55, 56]
+    },
+    { // 144
+        'type': 'item',
+        'phase': 1,
+        'x': 1867,
+        'y': 668,
+        'items': ['mask_5k']
+    },
+    { // 145
+        'type': 'item',
+        'phase': 1,
+        'x': 1787,
+        'y': 656,
+        'items': ['bead_1400']
+    },
+    { // 146
+        'type': 'item',
+        'phase': 1,
+        'x': 2387,
+        'y': 1044,
+        'items': ['seed_indoor'],
+        'revealed_by': [57]
+    },
+    { // 147
+        'type': 'merchant',
+        'phase': 1,
+        'x': 2569,
+        'y': 884,
+        'revealed_by': [58]
+    },
+    { // 148
+        'type': 'item',
+        'phase': 1,
+        'x': 2639,
+        'y': 1214,
+        'items': ['snake_fresh'],
+        'revealed_by': [61]
+    },
+    { // 149
+        'type': 'item',
+        'phase': 1,
+        'x': 2415,
+        'y': 522,
+        'items': ['bead_submerged'],
+        'revealed_by': [63]
+    },
+    { // 150
+        'type': 'item',
+        'phase': 1,
+        'x': 2787,
+        'y': 490,
+        'items': ['scroll'],
+        'revealed_by': [64]
     },
 ];
 
@@ -916,6 +1261,53 @@ let connections = [
     [{'t': 0, id: 102}], // 101
     [], // 102
     [], // 103
+    [], // 104
+    [], // 105
+    [], // 106
+    [], // 107
+    [], // 108
+    [{'t': 0, id: 110}], // 109
+    [], // 110
+    [], // 111
+    [{'t': 0, id: 113}], // 112
+    [], // 113
+    [], // 114
+    [], // 115
+    [], // 116
+    [], // 117
+    [{'t': 0, id: 119}, {'t': 0, id: 120}], // 118
+    [], // 119
+    [], // 120
+    [], // 121
+    [], // 122
+    [{'t': 0, id: 124}, {'t': 0, id: 125}], // 123
+    [], // 124
+    [], // 125
+    [], // 126
+    [], // 127
+    [], // 128
+    [], // 129
+    [], // 130
+    [], // 131
+    [], // 132
+    [], // 133
+    [], // 134
+    [], // 135
+    [], // 136
+    [], // 137
+    [], // 138
+    [], // 139
+    [], // 140
+    [], // 141
+    [], // 142
+    [{'t': 0, id: 144}, {'t': 0, id: 145}], // 143
+    [], // 144
+    [], // 145
+    [], // 146
+    [], // 147
+    [], // 148
+    [], // 149
+    [], // 150
 ];
 
 // todo fill in with various stray items
@@ -1027,6 +1419,53 @@ let discovered = [
     false,
     false,
     false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
 ];
 
 let index = {

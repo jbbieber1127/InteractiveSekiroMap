@@ -78,19 +78,46 @@ let phase_colors = [
 
 let image_dir = 'images/';
 let item_icons = {
-    ako: "ako.png", //
-    azurite: "azurite.png", //
-    bead: "bead.png", // 
-    bead_hug: "bead_hug.png", // 
-    gaichiin: "gaichiin.png", //
-    gokan: "gokan.png", //
-    malcontent: "malcontent.png", //
-    scroll: "scroll.png", //
-    seed: "seed.png", //
-    tanto: "tanto.png", // 
-    ungo: "ungo.png", //
-    yashi: "yashi.png" //
-};
+    '2az_6ea': '2az_6ea.png',
+    '2x_azurite': '2x_azurite.png',
+    'ako': "ako.png",
+    'axe': 'axe.png',
+    'azurite': "azurite.png",
+    'bead': "bead.png",
+    'bead_1400': 'bead_1400.png',
+    'bead_hug': "bead_hug.png",
+    'bead_indoor': 'bead_indoor.png',
+    'bead_statue': 'bead_statue.png',
+    'bead_submerged': 'bead_submerged',
+    'cracker_500': 'cracker_500.png',
+    'fan': 'fan.png',
+    'fan_1600': 'fan_1600.png',
+    'feather': 'feather.png',
+    'finger': '',
+    'fire': '',
+    'gaichiin': "gaichiin.png",
+    'gokan': "gokan.png",
+    'key': '',
+    'malcontent': "malcontent.png",
+    'mask_5k': 'mask_5k.png',
+    'mask_12': 'mask_12.png',
+    'mask_7': 'mask_7.png',
+    'sabimaru': '',
+    'scroll': "scroll.png",
+    'scroll_1200': '',
+    'seed': "seed.png",
+    'seed_1k': '',
+    'seed_2k': '',
+    'seed_indoor': '',
+    'seed_tree': '',
+    'shuriken': '',
+    'snake_dry': '',
+    'snake_fresh': '',
+    'spear': '',
+    'tanto': "tanto.png",
+    'ungo': "ungo.png",
+    'yashi': "yashi.png"
+}
 
 // which phases to show initially
 let showing = 1;
