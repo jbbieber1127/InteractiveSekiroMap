@@ -156,7 +156,7 @@ let should_display = (id) => {
             let cx = connections[d];
             for(let c = 0; c < cx.length; c++){
                 if(cx[c].id == id){// if something that connects to this node is discovered, then display this node (depending on connection type)
-                    if(cx[c].t <= 1){
+                    if(cx[c].t <= 2){
                         return true;
                     }
                 }
