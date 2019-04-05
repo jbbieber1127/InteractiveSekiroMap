@@ -64,7 +64,8 @@ redraw();
 window.addEventListener('resize', redraw);
 
 let type_space = {
-    'encounter_mjr': 80,
+    'encounter_mjr_big': 100,
+    'encounter_mjr': 87.5,
     'encounter': 40,
     'shrine': 80,
     'key': 30,
@@ -315,7 +316,7 @@ let drawMap = () => {
             let el = svg.append('circle')
                 .attr('cx', x)
                 .attr('cy', y)
-                .attr('r', 40)
+                .attr('r', type_space['encounter'])
                 .attr('opacity', 0.75)
                 .attr('fill', phase_colors[phase - 1])
                 .style('cursor', 'pointer')
@@ -346,15 +347,64 @@ let drawMap = () => {
                     item_div.style('opacity', 0.35);
                 }
             }
-        }else if(type == 'encounter_mjr'){
+        }else if(type == 'encounter_mjr_big'){
             let el = svg.append('circle')
                 .attr('cx', x)
                 .attr('cy', y)
-                .attr('r', 80)
+                .attr('r', type_space['encounter_mjr_big'])
                 .attr('opacity', 0.75)
                 .attr('fill', phase_colors[phase - 1])
                 .style('cursor', 'pointer')
                 .on('click', click);
+            
+            let img = new Image();
+            img.onload = () => {
+                let height = img.height;
+                let width = img.width;
+                svg.append('image')
+                    .attr('x', x - width/2)
+                    .attr('y', y - height/2 - 20)
+                    .attr('xlink:href', img.src)
+                    .attr('pointer-events', 'none');
+            };
+            img.src = image_dir + n.icon;
+            el.style('opacity', 0.35);
+            if(discovered[i]){
+                let img = new Image();
+                img.onload = () => {
+                    let height = img.height;
+                    let width = img.width;
+                    svg.append('image')
+                        .attr('x', x - width/2)
+                        .attr('y', y - height/2)
+                        .attr('xlink:href', img.src)
+                        .attr('pointer-events', 'none');
+                };
+                img.src = image_dir + 'execution.png';
+                el.style('opacity', 0.35);
+            }
+        }else if(type == 'encounter_mjr'){
+            let el = svg.append('circle')
+                .attr('cx', x)
+                .attr('cy', y)
+                .attr('r', type_space['encounter_mjr'])
+                .attr('opacity', 0.75)
+                .attr('fill', phase_colors[phase - 1])
+                .style('cursor', 'pointer')
+                .on('click', click);
+            
+            let img = new Image();
+            img.onload = () => {
+                let height = img.height;
+                let width = img.width;
+                svg.append('image')
+                    .attr('x', x - width/2)
+                    .attr('y', y - height/2 - 45)
+                    .attr('xlink:href', img.src)
+                    .attr('pointer-events', 'none');
+            };
+            img.src = image_dir + n.icon;
+            el.style('opacity', 0.35);
             if(discovered[i]){
                 let img = new Image();
                 img.onload = () => {
@@ -425,7 +475,7 @@ let drawMap = () => {
         if(type != 'item' && type != 'merchant'){
             let fObj = svg.append('foreignObject')
                 .attr('x', x - 100)
-                .attr('y', y + (type == 'shrine' ? 20 : (type == 'encounter' ? - (5 + 30*(name.length/10)) : 0)))
+                .attr('y', y + (type == 'shrine' ? 20 : (type == 'encounter' ? - (5 + 30*(name.length/10)) : (type == 'encounter_mjr_big' ? 50 : (type == 'encounter_mjr' ? 40 : 0)))))
                 .attr('width', 200)
                 .attr('height', 200)
                 .attr('requiredFeatures', 'http://www.w3.org/TR/SVG11/feature#Extensibility')

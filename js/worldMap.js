@@ -232,7 +232,7 @@ let nodes = [
     },
     { // 30
         'name': 'GENICHIRO & ISSHIN, SWORD SAINT',
-        'type': 'encounter_mjr',
+        'type': 'encounter_mjr_big',
         'icon': 'sword_saint.png',
         'phase': 3,
         'x': 1050,
@@ -286,7 +286,7 @@ let nodes = [
     },
     { // 37
         'name': 'EMMA & ISSHIN ASHINA',
-        'type': 'encounter_mjr',
+        'type': 'encounter_mjr_big',
         'icon': 'emma_isshin.png',
         'phase': 2,
         'x': 2375,
