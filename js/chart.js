@@ -245,6 +245,9 @@ let drawMap = () => {
                 .attr('y2', y2n)
                 .style('stroke', phase_colors[Math.max(n1.phase, n2.phase)-1])
                 .style('stroke-width', 5);
+            if(discovered[i] && discovered[c.id]){
+                line.style('opacity', 0.5);
+            }
             // if not the default 2-way line type
             if(c.t == 1 || c.t == 2){
                 line.attr('stroke-dasharray', '5, 5');

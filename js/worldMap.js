@@ -9,7 +9,7 @@ let nodes = [
     { // 1
         'name': 'OWL',
         'type': 'encounter_mjr',
-        'icon': 'owl_icon.png',
+        'icon': 'owl.png',
         'phase': 2,
         'x': 289,
         'y': 827
@@ -17,6 +17,7 @@ let nodes = [
     { // 2
         'name': 'LADY BUTTERFLY',
         'type': 'encounter_mjr',
+        'icon': 'butterfly.png',
         'phase': 1,
         'x': 475,
         'y': 791
@@ -128,6 +129,7 @@ let nodes = [
     { // 17
         'name': 'DEMON OF HATRED',
         'type': 'encounter_mjr',
+        'icon': 'demon.png',
         'phase': 3,
         'x': 720,
         'y': 1625,
@@ -176,6 +178,7 @@ let nodes = [
     { // 23
         'name': 'GYOUBU',
         'type': 'encounter_mjr',
+        'icon': 'gyoubu.png',
         'phase': 1,
         'x': 773,
         'y': 987
@@ -230,6 +233,7 @@ let nodes = [
     { // 30
         'name': 'GENICHIRO & ISSHIN, SWORD SAINT',
         'type': 'encounter_mjr',
+        'icon': 'sword_saint.png',
         'phase': 3,
         'x': 1050,
         'y': 300
@@ -283,6 +287,7 @@ let nodes = [
     { // 37
         'name': 'EMMA & ISSHIN ASHINA',
         'type': 'encounter_mjr',
+        'icon': 'emma_isshin.png',
         'phase': 2,
         'x': 2375,
         'y': 250
@@ -290,7 +295,7 @@ let nodes = [
     { // 38
         'name': 'OWL',
         'type': 'encounter_mjr',
-        'icon': 'owl_icon.png',
+        'icon': 'owl.png',
         'phase': 2,
         'x': 2110,
         'y': 350
@@ -405,6 +410,7 @@ let nodes = [
     { // 53
         'name': 'GUARDIAN APE',
         'type': 'encounter_mjr',
+        'icon': 'ape.png',
         'phase': 1,
         'x': 2335,
         'y': 1960,
@@ -502,6 +508,7 @@ let nodes = [
     { // 66
         'name': 'MONKEYS',
         'type': 'encounter_mjr',
+        'icon': 'monkeys.png',
         'phase': 1,
         'x': 2950,
         'y': 320
@@ -587,6 +594,7 @@ let nodes = [
     { // 77
         'name': 'DUAL APES',
         'type': 'encounter_mjr',
+        'icon': 'apes.png',
         'phase': 1,
         'x': 2400,
         'y': 1375,
@@ -782,6 +790,7 @@ let nodes = [
     { // 102
         'name': 'DIVINE DRAGON',
         'type': 'encounter_mjr',
+        'icon': 'dragon.png',
         'phase': 2,
         'x': 3500,
         'y': 320
@@ -789,6 +798,7 @@ let nodes = [
     { // 103
         'name': 'GENICHIRO ASHINA', // missed it earlier
         'type': 'encounter_mjr',
+        'icon': 'genichiro.png',
         'phase': 1,
         'x': 1940,
         'y': 440,
