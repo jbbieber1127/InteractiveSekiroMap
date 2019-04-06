@@ -274,7 +274,6 @@ let drawMap = () => {
             discovered[i] = !discovered[i];
             buildSideBar();
             drawMap();
-            console.log(i);
         };
 
         if(type == 'shrine'){
