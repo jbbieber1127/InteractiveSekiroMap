@@ -1,10 +1,10 @@
 let nodes = [
     { // 0
-        'name': 'HIDDEN TEMPLE',
+        'name': 'DILAPIDATED TEMPLE',
         'type': 'shrine',
         'phase': 1,
-        'x': 325,
-        'y': 603
+        'x': 635,
+        'y': 1880
     },
     { // 1
         'name': 'OWL',
@@ -89,14 +89,14 @@ let nodes = [
         'phase': 1,
         'x': 155,
         'y': 1780,
-        'revealed_by': [12]
+        'revealed_by': [0]
     },
     { // 12
-        'name': 'DILAPIDATED TEMPLE',
+        'name': 'HIDDEN TEMPLE',
         'type': 'shrine',
         'phase': 1,
-        'x': 635,
-        'y': 1880
+        'x': 325,
+        'y': 603
     },
     { // 13
         'name': 'ASHINA OUTSKIRTS',
@@ -1196,7 +1196,7 @@ let nodes = [
 
 // types (t): 0=2-way, 1=1-way, 2=2-way(dashed)
 let connections = [
-    [{'t': 0, id: 1}, {'t': 0, id: 2}], // 0
+    [{'t': 2, id: 11}, {'t': 0, id: 13}], // 0
     [{'t': 0, id: 3}], // 1
     [{'t': 0, id: 3}], // 2
     [{'t': 0, id: 4}, {'t': 0, id: 5}], // 3
@@ -1208,7 +1208,7 @@ let connections = [
     [{'t': 0, id: 10}], // 9
     [{'t': 0, id: 11}], // 10
     [], // 11
-    [{'t': 2, id: 11}, {'t': 0, id: 13}], // 12
+    [{'t': 0, id: 1}, {'t': 0, id: 2}], // 12
     [{'t': 0, id: 14}], // 13
     [{'t': 0, id: 15}], // 14
     [{'t': 0, id: 16}], // 15
@@ -1358,19 +1358,20 @@ let astray = [
 ];
 
 let discovered = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
     true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
     false,
     false,
     false,

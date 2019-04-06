@@ -1,4 +1,68 @@
-// init
+// init - check for url parameters
+
+let bool_arr_to_hex = (arr) => {
+    let str = "";
+    for(let i = 0; i < arr.length; i+=4){
+        let tmp = arr.slice(i, i + 4);
+        let b = tmp.reduce((res, x) => res << 1 | x);
+        str += (b == false ? 0 : b).toString(16);
+    }
+    return str;
+}
+
+let hex_to_bool_arr = (str, len) => {
+    let out = [];
+    for(let i = 0; i < str.length; i++){
+        let val = parseInt(str[i], 16).toString(2);
+        for(let b = 0; b < 4 - val.length; b ++){
+            out.push(false);
+        }
+        for(let b = 0; b < val.length; b ++){
+            out.push(val[b] == '1');
+        }
+    }
+    for(let i = 0; i < len - out.length; i++){
+        out.push(false);
+    }
+    return out.slice(0, len);
+}
+
+let updateURLParameter = (url, param, paramVal) => {
+    var newAdditionalURL = "";
+    var tempArray = url.split("?");
+    var baseURL = tempArray[0];
+    var additionalURL = tempArray[1];
+    var temp = "";
+    if (additionalURL) {
+        tempArray = additionalURL.split("&");
+        for (var i=0; i<tempArray.length; i++){
+            if(tempArray[i].split('=')[0] != param){
+                newAdditionalURL += temp + tempArray[i];
+                temp = "&";
+            }
+        }
+    }
+
+    var rows_txt = temp + "" + param + "=" + paramVal;
+    return baseURL + "?" + newAdditionalURL + rows_txt;
+}
+
+let updateURL = () => {
+    window.history.replaceState('', '', updateURLParameter(window.location.href, "state", bool_arr_to_hex(discovered)));
+}
+
+let updateState = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const stateParam = urlParams.get('state');
+    if(stateParam){
+        discovered = hex_to_bool_arr(stateParam, nodes.length);
+    }else{
+        console.log('no params')
+    }
+}
+updateState();
+
+// start doing stuff
 let body = d3.select('body');
 let content = body.append('div')
     .style('width', '100%')
@@ -294,6 +358,7 @@ let drawMap = () => {
             discovered[i] = !discovered[i];
             buildSideBar();
             drawMap();
+            updateURL();
         };
 
         if(type == 'shrine'){
@@ -560,7 +625,7 @@ let buildSideBar = () => {
         for(let i = 0; i < discovered.length; i++){
             discovered[i] = false;
         }
-        discovered[12] = true;
+        discovered[0] = true;
         drawMap();
         buildSideBar();
     });
