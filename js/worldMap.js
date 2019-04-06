@@ -88,7 +88,8 @@ let nodes = [
         'type': 'shrine',
         'phase': 1,
         'x': 155,
-        'y': 1780
+        'y': 1780,
+        'revealed_by': [12]
     },
     { // 12
         'name': 'DILAPIDATED TEMPLE',
@@ -297,6 +298,7 @@ let nodes = [
         'type': 'encounter_mjr',
         'icon': 'owl.png',
         'phase': 2,
+        'items': ['aromatic_branch'],
         'x': 2110,
         'y': 350
     },
@@ -398,7 +400,8 @@ let nodes = [
         'type': 'shrine',
         'phase': 1,
         'x': 1900,
-        'y': 2013
+        'y': 2013,
+        'revealed_by_and': [49,  103]
     },
     { // 52
         'name': 'BODHISATTVA VALLEY',
@@ -456,7 +459,8 @@ let nodes = [
         'type': 'shrine',
         'phase': 1,
         'x': 2170,
-        'y': 760
+        'y': 760,
+        'revealed_by': [16]
     },
     { // 60
         'name': 'HEADLESS',
@@ -685,7 +689,8 @@ let nodes = [
         'type': 'shrine',
         'phase': 2,
         'x': 3495,
-        'y': 1880
+        'y': 1880,
+        'revealed_by': [153]
     },
     { // 89
         'name': 'TRUE MONK',
@@ -1163,6 +1168,30 @@ let nodes = [
         'items': ['scroll'],
         'revealed_by': [64]
     },
+    { // 151
+        'type': 'item',
+        'phase': 1,
+        'x': 2710,
+        'y': 2010,
+        'items': ['palace_lotus'],
+        'revealed_by': [53, 54]
+    },
+    { // 152
+        'type': 'item',
+        'phase': 1,
+        'x': 3300,
+        'y': 2050,
+        'items': ['shelter_stone'],
+        'revealed_by': [87]
+    },
+    { // 153
+        'type': 'item',
+        'phase': 1,
+        'x': 2200,
+        'y': 575,
+        'items': ['fountainhead_incense'],
+        'revealed_by_and': [38, 152, 151]
+    },
 ];
 
 // types (t): 0=2-way, 1=1-way, 2=2-way(dashed)
@@ -1318,6 +1347,9 @@ let connections = [
     [], // 148
     [], // 149
     [], // 150
+    [], // 151
+    [], // 152
+    [], // 152
 ];
 
 // todo fill in with various stray items
@@ -1339,6 +1371,9 @@ let discovered = [
     false,
     false,
     true,
+    false,
+    false,
+    false,
     false,
     false,
     false,

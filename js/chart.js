@@ -132,7 +132,11 @@ let item_icons = {
     'spear': 'spear.png',
     'tanto': "tanto.png",
     'ungo': "ungo.png",
-    'yashi': "yashi.png"
+    'yashi': "yashi.png",
+    'aromatic_branch': 'aromatic_branch.png',
+    'shelter_stone': 'shelter_stone.png',
+    'palace_lotus': 'divine_lotus.png',
+    'fountainhead_incense': 'fountainhead_incense.png'
 }
 
 // which phases to show initially
@@ -151,6 +155,20 @@ let should_display = (id) => {
                 }
             }
         }
+        // if this node is revealed by all required nodes, then display this node
+        let revealed_by_and = nodes[id].revealed_by_and;
+        if(revealed_by_and){
+            let all_true = true;
+            for(let r = 0; r < revealed_by_and.length; r++){
+                if(!discovered[revealed_by_and[r]]){
+                    all_true = false;
+                    break;
+                }
+            }
+            if(all_true){
+                return true;
+            }
+        }
         for(let d = 0; d < discovered.length; d++){
             // if we are on ourself or the node hasn't been discovered, then move on to the next node
             if(d == id || !discovered[d]){
@@ -159,7 +177,7 @@ let should_display = (id) => {
             let cx = connections[d];
             for(let c = 0; c < cx.length; c++){
                 if(cx[c].id == id){// if something that connects to this node is discovered, then display this node (depending on connection type)
-                    if(cx[c].t <= 2){
+                    if(cx[c].t <= 1){
                         return true;
                     }
                 }
@@ -477,6 +495,7 @@ let drawMap = () => {
             }
         }
         // create the labels
+        let t = undefined;
         if(type != 'item' && type != 'merchant'){
             let fObj = svg.append('foreignObject')
                 .attr('x', x - 100)
@@ -485,12 +504,28 @@ let drawMap = () => {
                 .attr('height', 200)
                 .attr('requiredFeatures', 'http://www.w3.org/TR/SVG11/feature#Extensibility')
                 .style('pointer-events', 'none');
-            let text = fObj.append('xhtml:div')
+            t = fObj.append('xhtml:div')
                 .append('p')
                     .style('margin', 0)
                     .style('padding', 0)
                     .style('cursor', 'pointer')
                     .text(name);
+        }
+        if(type == 'encounter_mjr' && n.items){
+            let img = new Image();
+            img.onload = () => {
+                let height = img.height;
+                let width = img.width;
+                let tmp = svg.append('image')
+                    .attr('x', x - width/2)
+                    .attr('y', y + 40 + t.node().clientHeight)
+                    .attr('xlink:href', img.src)
+                    .attr('pointer-events', 'none');
+                    if(discovered[i]){
+                        tmp.style('opacity', 0.35);
+                    }
+            };
+            img.src = image_dir + item_icons[n.items[0]];
         }
     }
 }
