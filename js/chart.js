@@ -63,6 +63,8 @@ let redraw = () => { // deals with window resize
 redraw();
 window.addEventListener('resize', redraw);
 
+let show_undiscovered = false;
+
 let type_space = {
     'encounter_mjr_big': 114.5,
     'encounter_mjr': 87.5,
@@ -212,7 +214,7 @@ let drawMap = () => {
             let c = connections[i][j];
             let n1 = nodes[i];
             let n2 = nodes[c.id];
-            if((showing < n1.phase || showing < n2.phase) || !should_display(i) || !should_display(c.id)){
+            if(!show_undiscovered && ((showing < n1.phase || showing < n2.phase) || !should_display(i) || !should_display(c.id))){
                 continue;
             }
             // shrink the lines towards the center to free up space near nodes
@@ -266,7 +268,7 @@ let drawMap = () => {
         let y = n.y;
         let name = n.name;
         // determine if we should display the node
-        if(showing < phase || !should_display(i)){
+        if(!show_undiscovered && (showing < phase || !should_display(i))){
             continue;
         }
 
@@ -277,39 +279,30 @@ let drawMap = () => {
         };
 
         if(type == 'shrine'){
+            let img = new Image();
+            img.onload = () => {
+                let height = img.height;
+                let width = img.width;
+                svg.append('image')
+                    .attr('x', x - width/2)
+                    .attr('y', y - height/2 - 25) // 25 is an arbitrary offset for style
+                    .attr('xlink:href', img.src)
+                    .style('cursor', 'pointer')
+                    .on('click', click);
+            };
+            let outln = svg.append('circle')
+                .attr('cx', x)
+                .attr('cy', y)
+                .attr('r', type_space['shrine'])
+                .attr('fill', 'none')
+                .attr('stroke-width', 5);
             if(discovered[i]){
-                let img = new Image();
-                img.onload = () => {
-                    let height = img.height;
-                    let width = img.width;
-                    svg.append('image')
-                        .attr('x', x - width/2)
-                        .attr('y', y - height/2 - 25) // 25 is an arbitrary offset for style
-                        .attr('xlink:href', img.src)
-                        .style('cursor', 'pointer')
-                        .on('click', click);
-                };
                 img.src = image_dir + 'shrine_discovered.png';
-                svg.append('circle')
-                    .attr('cx', x)
-                    .attr('cy', y)
-                    .attr('r', type_space['shrine'])
-                    .attr('fill', 'none')
-                    .attr('stroke-width', 5)
-                    .attr('stroke', 'LightBlue');
+                outln.style('stroke', 'lightblue');
             }else{
-                let img = new Image();
-                img.onload = () => {
-                    let height = img.height;
-                    let width = img.width;
-                    svg.append('image')
-                        .attr('x', x - width/2)
-                        .attr('y', y - height/2 - 25) // 25 is an arbitrary offset for style
-                        .attr('xlink:href', img.src)
-                        .style('cursor', 'pointer')
-                        .on('click', click);
-                };
                 img.src = image_dir + 'shrine_undiscovered.png';
+                outln.style('stroke', 'gray');
+
             }
         }else if(type == 'encounter'){
             let el = svg.append('circle')
@@ -378,7 +371,6 @@ let drawMap = () => {
                 }
             };
             img.src = image_dir + n.icon;
-            el.style('opacity', 0.35);
             if(discovered[i]){
                 let img = new Image();
                 img.onload = () => {
@@ -418,7 +410,6 @@ let drawMap = () => {
                 }
             };
             img.src = image_dir + n.icon;
-            el.style('opacity', 0.35);
             if(discovered[i]){
                 let img = new Image();
                 img.onload = () => {
@@ -510,6 +501,14 @@ drawMap();
 let buildSideBar = () => {
     sideBar.html('');
     sideBar.style('background', 'lightgray');
+    let show_all_box = sideBar.append('input').property('checked', show_undiscovered).attr('type', 'checkbox').on('change', ()=>{
+        show_undiscovered = show_all_box.property('checked');
+        console.log(show_all_box.property('checked'))
+        drawMap();
+    });
+    sideBar.append('text').text(' Show Undiscovered');
+    sideBar.append('br');
+    sideBar.append('br');
     let show_all = sideBar.append('button');
     show_all.on('click', () => {
         showing = 3;
@@ -519,7 +518,7 @@ let buildSideBar = () => {
         drawMap();
         buildSideBar();
     });
-    show_all.text('Show All');
+    show_all.text('Complete All');
     let hide_all = sideBar.append('button');
     hide_all.on('click', () => {
         showing = 1;
@@ -530,7 +529,7 @@ let buildSideBar = () => {
         drawMap();
         buildSideBar();
     });
-    hide_all.text('Hide All');
+    hide_all.text('Uncomplete All');
     let controls = sideBar.append('div');
     controls.append('h1').text('Phases:');
     let phase_form = controls.append("form");
