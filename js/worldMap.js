@@ -209,8 +209,8 @@ let nodes = [
         'name': 'SAMURAI',
         'type': 'encounter',
         'phase': 1,
-        'x': 1230,
-        'y': 800,
+        'x': 1190,
+        'y': 810,
         'items': ['bead'],
         'revealed_by': [24]
     },
@@ -218,8 +218,8 @@ let nodes = [
         'name': 'OGRE',
         'type': 'encounter',
         'phase': 2,
-        'x': 1195,
-        'y': 890,
+        'x': 1215,
+        'y': 900,
         'items': ['bead', 'scroll'],
         'revealed_by': [26, 40]
     },
@@ -318,7 +318,7 @@ let nodes = [
         'name': 'HEADLESS',
         'type': 'encounter',
         'phase': 1,
-        'x': 1300,
+        'x': 1325,
         'y': 1100,
         'items': ['ungo'],
         'revealed_by': [26, 40]
@@ -500,8 +500,8 @@ let nodes = [
         'name': 'CENTIPEDE',
         'type': 'encounter',
         'phase': 1,
-        'x': 2613,
-        'y': 413,
+        'x': 2580,
+        'y': 390,
         'items': ['bead'],
         'revealed_by': [63]
     },
@@ -531,8 +531,8 @@ let nodes = [
         'name': 'SPEAR',
         'type': 'encounter',
         'phase': 1,
-        'x': 1560,
-        'y': 945,
+        'x': 1580,
+        'y': 925,
         'items': ['bead'],
         'revealed_by': [26, 68, 71]
     },
@@ -540,8 +540,8 @@ let nodes = [
         'name': 'SPEAR & SAMURAI',
         'type': 'encounter',
         'phase': 3,
-        'x': 1590,
-        'y': 1030,
+        'x': 1600,
+        'y': 1035,
         'items': ['bead'],
         'revealed_by': [68, 71]
     },
@@ -807,7 +807,7 @@ let nodes = [
     { // 104
         'type': 'item',
         'phase': 1,
-        'x': 527,
+        'x': 545,
         'y': 1078,
         'items': ['bead_hug'],
         'revealed_by': [3]
@@ -883,8 +883,8 @@ let nodes = [
     { // 114
         'type': 'merchant',
         'phase': 1,
-        'x': 995,
-        'y': 1503,
+        'x': 990,
+        'y': 1513,
         'revealed_by': [16]
     },
     { // 115
@@ -914,21 +914,21 @@ let nodes = [
     { // 118
         'type': 'merchant',
         'phase': 1,
-        'x': 853,
+        'x': 825,
         'y': 767,
         'revealed_by': [23]
     },
     { // 119
         'type': 'item',
         'phase': 1,
-        'x': 869,
+        'x': 854,
         'y': 647,
         'items': ['cracker_500']
     },
     { // 120
         'type': 'item',
         'phase': 1,
-        'x': 787,
+        'x': 762,
         'y': 677,
         'items': ['seed_1k']
     },
@@ -936,14 +936,14 @@ let nodes = [
         'type': 'item',
         'phase': 1,
         'x': 1450,
-        'y': 800,
+        'y': 810,
         'items': ['sabimaru'],
         'revealed_by': [26]
     },
     { // 122
         'type': 'item',
         'phase': 1,
-        'x': 1407,
+        'x': 1357,
         'y': 979,
         'items': ['spear'],
         'revealed_by': [26]
@@ -951,8 +951,8 @@ let nodes = [
     { // 123
         'type': 'merchant',
         'phase': 1,
-        'x': 1195,
-        'y': 1250,
+        'x': 1175,
+        'y': 1285,
         'revealed_by': [40]
     },
     { // 124
@@ -1019,7 +1019,7 @@ let nodes = [
     { // 132
         'type': 'item',
         'phase': 1,
-        'x': 2243,
+        'x': 2253,
         'y': 1625,
         'items': ['bead_statue'],
         'revealed_by': [75]
@@ -1066,8 +1066,8 @@ let nodes = [
     { // 138
         'type': 'item',
         'phase': 2,
-        'x': 3300,
-        'y': 800,
+        'x': 3330,
+        'y': 770,
         'items': ['seed_indoor'],
         'revealed_by': [98]
     },
@@ -1135,7 +1135,7 @@ let nodes = [
     { // 147
         'type': 'merchant',
         'phase': 1,
-        'x': 2569,
+        'x': 2589,
         'y': 884,
         'revealed_by': [58]
     },
@@ -1150,7 +1150,7 @@ let nodes = [
     { // 149
         'type': 'item',
         'phase': 1,
-        'x': 2415,
+        'x': 2385,
         'y': 522,
         'items': ['bead_submerged'],
         'revealed_by': [63]
