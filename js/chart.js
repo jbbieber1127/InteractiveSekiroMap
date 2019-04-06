@@ -70,7 +70,7 @@ let type_space = {
     'shrine': 80,
     'key': 30,
     'item': 30,
-    'merchant': 30
+    'merchant': 10
 };
 
 // let accessability = d3.select('#accessability');
@@ -274,7 +274,7 @@ let drawMap = () => {
             discovered[i] = !discovered[i];
             buildSideBar();
             drawMap();
-            console.log(name);
+            console.log(i);
         };
 
         if(type == 'shrine'){
@@ -465,7 +465,7 @@ let drawMap = () => {
             img.src = image_dir + item_icons[n.items[0]];
         }else if(type == 'merchant'){
             let merch = svg.append('text');
-            merch.attr('x', x - 18.75).attr('y', y - 12.5);
+            merch.attr('x', x - 18.75).attr('y', y);
             merch.text('$$$');
             merch.style('font-size', 25)
             .style('cursor', 'pointer')
@@ -477,7 +477,7 @@ let drawMap = () => {
                     let width = img.width;
                     svg.append('image')
                         .attr('x', x - width/2)
-                        .attr('y', y - height/2 - 25)
+                        .attr('y', y - height/2 -10)
                         .attr('xlink:href', img.src)
                         .attr('pointer-events', 'none')
                         .style('opacity', 0.35);
