@@ -869,14 +869,14 @@ let nodes = [
         'x': 1237,
         'y': 1783,
         'items': ['shuriken'],
-        'revealed_by': [94]
+        'revealed_by': [15]
     },
     { // 112
         'type': 'merchant',
         'phase': 1,
         'x': 1087,
         'y': 1665,
-        'revealed_by': [94]
+        'revealed_by': [15]
     },
     { // 113
         'type': 'item',
@@ -1349,12 +1349,7 @@ let connections = [
     [], // 150
     [], // 151
     [], // 152
-    [], // 152
-];
-
-// todo fill in with various stray items
-let astray = [
-    {}
+    [], // 153
 ];
 
 let discovered = [
@@ -1515,12 +1510,12 @@ let discovered = [
 ];
 
 let index = {
-    'Ashina Outskirts': [24, 22, 21, 16, 14, 13, 12],
+    'Ashina Outskirts': [24, 22, 21, 16, 14, 13, 0],
     'Ashina Castle': [39, 36, 32, 31, 26, 40, 68, 29, 55, 42],
     'Abandoned Dungeon': [72, 56],
     'Senpou Temple, Mt. Kongo': [67, 64, 63, 58, 59, 61, 57],
     'Sunken Valley': [44, 46, 48, 51, 52, 54],
     'Ashina Depths': [74, 75, 79, 83, 84, 87],
     'Fountainhead Palace': [88, 90, 91, 93, 94, 98, 99, 100, 101],
-    'Hirata Estate': [11, 10, 7, 6, 3, 0]
+    'Hirata Estate': [11, 10, 7, 6, 3, 12]
 };

@@ -17,6 +17,7 @@ let hex_to_bool_arr = (str, len) => {
         for(let b = 0; b < 4 - val.length; b ++){
             out.push(false);
         }
+        
         for(let b = 0; b < val.length; b ++){
             out.push(val[b] == '1');
         }
@@ -139,22 +140,11 @@ let type_space = {
     'merchant': 10
 };
 
-// let accessability = d3.select('#accessability');
-// let colors = accessability.append('input');
-// let choices = ['Normal']
-// colors.
-
 let phase_colors = [
     '#0C481A',
     '#5D56FF',
     '#FFC107'
 ]
-
-// let phase_colors = [
-//     'forestgreen',
-//     'gold',
-//     'orangered'
-// ];
 
 let image_dir = 'images/';
 let item_icons = {
@@ -202,9 +192,6 @@ let item_icons = {
     'palace_lotus': 'divine_lotus.png',
     'fountainhead_incense': 'fountainhead_incense.png'
 }
-
-// which phases to show initially
-let showing = 1;
 
 let should_display = (id) => {
     let display_self = discovered[id];
@@ -296,7 +283,7 @@ let drawMap = () => {
             let c = connections[i][j];
             let n1 = nodes[i];
             let n2 = nodes[c.id];
-            if(!show_undiscovered && ((showing < n1.phase || showing < n2.phase) || !should_display(i) || !should_display(c.id))){
+            if(!show_undiscovered && (!should_display(i) || !should_display(c.id))){
                 continue;
             }
             // shrink the lines towards the center to free up space near nodes
@@ -350,12 +337,13 @@ let drawMap = () => {
         let y = n.y;
         let name = n.name;
         // determine if we should display the node
-        if(!show_undiscovered && (showing < phase || !should_display(i))){
+        if(!show_undiscovered && !should_display(i)){
             continue;
         }
 
         let click = () => {
             discovered[i] = !discovered[i];
+            console.log(i);
             buildSideBar();
             drawMap();
             updateURL();
@@ -609,78 +597,12 @@ let buildSideBar = () => {
     sideBar.append('text').text(' Show Undiscovered');
     sideBar.append('br');
     sideBar.append('br');
-    let show_all = sideBar.append('button');
-    show_all.on('click', () => {
-        showing = 3;
-        for(let i = 0; i < discovered.length; i++){
-            discovered[i] = true;
-        }
-        drawMap();
-        buildSideBar();
-    });
-    show_all.text('Complete All');
-    let hide_all = sideBar.append('button');
-    hide_all.on('click', () => {
-        showing = 1;
-        for(let i = 0; i < discovered.length; i++){
-            discovered[i] = false;
-        }
-        discovered[0] = true;
-        drawMap();
-        buildSideBar();
-    });
-    hide_all.text('Uncomplete All');
     let controls = sideBar.append('div');
-    controls.append('h1').text('Phases:');
-    let phase_form = controls.append("form");
-    let p1cb = phase_form.append('input')
-        .attr('type', 'radio')
-        .attr('name', 'phase')
-        .property('checked', showing == 1);
-        p1cb.on('change', () => {
-            showing = 1;
-            drawMap();
-            buildSideBar();
-        });
-        phase_form.append('label').text('Phase 1');
-    let p2cb = phase_form.append('input')
-        .attr('type', 'radio')
-        .attr('name', 'phase')
-        .property('checked', showing == 2);
-        p2cb.text('Phase 2');
-        p2cb.on('change', () => {
-            showing = 2;
-            drawMap();
-            buildSideBar();
-        });
-        phase_form.append('label').text('Phase 2');
-    let p3cb = phase_form.append('input')
-        .attr('type', 'radio')
-        .attr('name', 'phase')
-        .property('checked', showing == 3);
-        p3cb.text('Phase 3');
-        p3cb.on('change', () => {
-            showing = 3;
-            drawMap();
-            buildSideBar();
-        });
-        phase_form.append('label').text('Phase 3');
     controls.append('h1').text('Discovered:');
 
     let shrine_div = controls.append('div');
     for(let key in index){
         let val = index[key];
-        let display_header = false; // hide areas that are not in the current phase
-        for(let i = 0; i < val.length; i++){
-            let n = nodes[val[i]];
-            if(n.phase <= showing){
-                display_header = true;
-                break;
-            }
-        }
-        if(!display_header){
-            continue;
-        }
         let zone_header = shrine_div.append('p').text('+ ' + key)
             .style('font-weight', '900').style('cursor', 'pointer');
         let zone = shrine_div.append('div');
@@ -732,42 +654,5 @@ let buildSideBar = () => {
             img.on('mouseout', mouseout);
         }
     }
-
-    controls.append('h1').text('Save/Load Data');
-    let data = {
-        'discovered': discovered,
-        'phase': showing
-    };
-    let save_to_clip = controls.append('button');
-    save_to_clip.style('width', '95%');
-    save_to_clip.text('Save to Clipboard');
-    save_to_clip.on('click', () => {
-        const el = document.createElement('textarea');
-        el.value = JSON.stringify(data);
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-        save_to_clip.text('Saved!');
-        redraw();redraw(); // call it twice as a temp workaround
-    });
-    controls.append('p').text('Load from clipboard').style('font-weight', '900');
-    let load_from_clip = controls.append('input');
-    load_from_clip.attr('type', 'text')
-        .style('width', '45%');
-    let exe_load_clip = controls.append('button');
-    exe_load_clip.text('Load');
-    exe_load_clip.style('display', 'inline-block');
-    exe_load_clip.on('click', () => {
-        try{
-            let parsed = JSON.parse(load_from_clip.property('value'));
-            discovered = parsed.discovered;
-            showing = parsed.phase;
-            drawMap();
-            buildSideBar();
-        }catch(error){
-            console.log("Bad json parse" + error);
-        }
-    });
 }
 buildSideBar();
