@@ -197,14 +197,16 @@ let nodes = [
         'phase': 1,
         'x': 1083,
         'y': 735,
-        'items': ['bead']
+        'items': ['bead'],
+        'hidden_by_and': [151, 152]
     },
     { // 26
         'name': 'ASHINA CASTLE',
         'type': 'shrine',
         'phase': 1,
         'x': 1350,
-        'y': 750
+        'y': 750,
+        'hidden_by_and': [151, 152]
     },
     { // 27
         'name': 'SAMURAI',
@@ -213,7 +215,8 @@ let nodes = [
         'x': 1190,
         'y': 810,
         'items': ['bead'],
-        'revealed_by': [24]
+        'revealed_by': [24],
+        'hidden_by_and': [151, 152]
     },
     { // 28
         'name': 'OGRE',
@@ -244,14 +247,16 @@ let nodes = [
         'type': 'shrine',
         'phase': 1,
         'x': 1490,
-        'y': 500
+        'y': 500,
+        'hidden_by_and': [151, 152]
     },
     { // 32
         'name': 'UPPER TOWER ASHINA DOJO',
         'type': 'shrine',
         'phase': 1,
         'x': 1410,
-        'y': 240
+        'y': 240,
+        'hidden_by_and': [151, 152]
     },
     { // 33
         'name': 'ELITE',
@@ -268,7 +273,8 @@ let nodes = [
         'phase': 2,
         'x': 1640,
         'y': 130,
-        'items': ['bead']
+        'items': ['bead'],
+        'revealed_by_and': [156, 151, 152]
     },
     { // 35
         'name': 'ELITE',
@@ -276,14 +282,16 @@ let nodes = [
         'phase': 1,
         'x': 1660,
         'y': 237,
-        'items': ['bead']
+        'items': ['bead'],
+        'hidden_by_and': [151, 152]
     },
     { // 36
         'name': 'CASTLE TOWER LOOKOUT',
         'type': 'shrine',
         'phase': 1,
         'x': 1920,
-        'y': 150
+        'y': 150,
+        'hidden_by_and': [151, 152]
     },
     { // 37
         'name': 'EMMA & ISSHIN ASHINA',
@@ -291,7 +299,8 @@ let nodes = [
         'icon': 'emma_isshin.png',
         'phase': 2,
         'x': 2375,
-        'y': 250
+        'y': 250,
+        'revealed_by_and': [159, 151, 152]
     },
     { // 38
         'name': 'OWL',
@@ -300,21 +309,24 @@ let nodes = [
         'phase': 2,
         'items': ['aromatic_branch'],
         'x': 2110,
-        'y': 350
+        'y': 350,
+        'revealed_by_and': [160, 151, 152]
     },
     { // 39
         'name': 'UPPER TOWER KURO\'S ROOM',
         'type': 'shrine',
         'phase': 1,
         'x': 2100,
-        'y': 575
+        'y': 575,
+        'hidden_by_and': [151, 152]
     },
     { // 40
         'name': 'OLD GRAVE',
         'type': 'shrine',
         'phase': 1,
         'x': 1220,
-        'y': 1170
+        'y': 1170,
+        'hidden_by_and': [151, 152]
     },
     { // 41
         'name': 'HEADLESS',
@@ -323,14 +335,16 @@ let nodes = [
         'x': 1325,
         'y': 1100,
         'items': ['ungo'],
-        'revealed_by': [26, 40]
+        'revealed_by': [26, 40],
+        'hidden_by_and': [151, 152]
     },
     { // 42
         'name': 'GREAT SERPENT SHRINE',
         'type': 'shrine',
         'phase': 1,
         'x': 1360,
-        'y': 1400
+        'y': 1400,
+        'hidden_by_and': [151, 152]
     },
     { // 43
         'name': 'SHADOW',
@@ -529,7 +543,8 @@ let nodes = [
         'type': 'shrine',
         'phase': 1,
         'x': 1467,
-        'y': 988
+        'y': 988,
+        'hidden_by_and': [151, 152]
     },
     { // 69 (lol)
         'name': 'SPEAR',
@@ -538,7 +553,8 @@ let nodes = [
         'x': 1580,
         'y': 925,
         'items': ['bead'],
-        'revealed_by': [26, 68, 71]
+        'revealed_by': [26, 68, 71],
+        'hidden_by_and': [151, 152]
     },
     { // 70
         'name': 'SPEAR & SAMURAI',
@@ -807,7 +823,8 @@ let nodes = [
         'phase': 1,
         'x': 1940,
         'y': 440,
-        'items': ['key']
+        'items': ['key'],
+        'hidden_by_and': [151, 152]
     },
     { // 104
         'type': 'item',
@@ -943,7 +960,8 @@ let nodes = [
         'x': 1450,
         'y': 810,
         'items': ['sabimaru'],
-        'revealed_by': [26]
+        'revealed_by': [26],
+        'hidden_by_and': [151, 152]
     },
     { // 122
         'type': 'item',
@@ -951,28 +969,32 @@ let nodes = [
         'x': 1357,
         'y': 979,
         'items': ['spear'],
-        'revealed_by': [26]
+        'revealed_by': [26],
+        'hidden_by_and': [151, 152]
     },
     { // 123
         'type': 'merchant',
         'phase': 1,
         'x': 1175,
         'y': 1285,
-        'revealed_by': [40]
+        'revealed_by': [40],
+        'hidden_by_and': [151, 152]
     },
     { // 124
         'type': 'item',
         'phase': 1,
         'x': 1131,
         'y': 1333,
-        'items': ['fan_1600']
+        'items': ['fan_1600'],
+        'hidden_by_and': [151, 152]
     },
     { // 125
         'type': 'item',
         'phase': 1,
         'x': 1207,
         'y': 1341,
-        'items': ['scroll_1200']
+        'items': ['scroll_1200'],
+        'hidden_by_and': [151, 152]
     },
     { // 126
         'type': 'item',
@@ -1098,7 +1120,8 @@ let nodes = [
         'x': 1413,
         'y': 490,
         'items': ['bead_hug'],
-        'revealed_by': [31]
+        'revealed_by': [31],
+        'hidden_by_and': [151, 152]
     },
     { // 142
         'type': 'item',
@@ -1106,7 +1129,8 @@ let nodes = [
         'x': 1600,
         'y': 520,
         'items': ['seed'],
-        'revealed_by': [31]
+        'revealed_by': [31],
+        'hidden_by_and': [151, 152]
     },
     { // 143
         'type': 'merchant',
@@ -1190,8 +1214,65 @@ let nodes = [
         'x': 2200,
         'y': 575,
         'items': ['fountainhead_incense'],
-        'revealed_by_and': [38, 152, 151]
+        'revealed_by_and': [158, 152, 151]
     },
+    { // 154
+        'name': 'ASHINA CASTLE',
+        'type': 'shrine',
+        'phase': 2,
+        'x': 1350,
+        'y': 750,
+        'revealed_by_and': [55, 151, 152]
+    },
+    { // 155
+        'name': 'UPPER TOWER ANTECHAMBER',
+        'type': 'shrine',
+        'phase': 2,
+        'x': 1490,
+        'y': 500,
+        'revealed_by_and': [154, 151, 152]
+    },
+    { // 156
+        'name': 'UPPER TOWER ASHINA DOJO',
+        'type': 'shrine',
+        'phase': 2,
+        'x': 1410,
+        'y': 240,
+        'revealed_by_and': [155, 151, 152]
+    },
+    { // 157
+        'name': 'CASTLE TOWER LOOKOUT',
+        'type': 'shrine',
+        'phase': 2,
+        'x': 1920,
+        'y': 150,
+        'revealed_by_and': [34, 151, 152]
+    },
+    { // 158
+        'name': 'UPPER TOWER KURO\'S ROOM',
+        'type': 'shrine',
+        'phase': 2,
+        'x': 2100,
+        'y': 575,
+        'revealed_by_and': [151, 152]
+    },
+    { // 159
+        'type': 'choice_obey',
+        'phase': 2,
+        'x': 2175,
+        'y': 100,
+        'revealed_by_and': [151, 152, 157],
+        'hidden_by': [160]
+    },
+    { // 160
+        'type': 'choice_break',
+        'phase': 2,
+        'x': 2100,
+        'y': 225,
+        'revealed_by_and': [151, 152, 157],
+        'hidden_by': [159]
+    },
+    
 ];
 
 // types (t): 0=2-way, 1=1-way, 2=2-way(dashed)
@@ -1228,13 +1309,13 @@ let connections = [
     [{'t': 0, id: 30}], // 29
     [], // 30
     [{'t': 0, id: 32}, {'t': 0, id: 36}], // 31
-    [{'t': 0, id: 34}, {'t': 0, id: 35}], // 32
+    [{'t': 0, id: 35}], // 32
     [], // 33
-    [{'t': 0, id: 36}], // 34
+    [{'t': 0, id: 156}], // 34
     [{'t': 0, id: 36}], // 35
-    [{'t': 0, id: 37}, {'t': 0, id: 38}, {'t': 0, id: 103}], // 36
+    [{'t': 0, id: 103}], // 36
     [], // 37
-    [{'t': 0, id: 39}], // 38
+    [], // 38
     [{'t': 0, id: 103}], // 39
     [{'t': 0, id: 42}], // 40
     [], // 41
@@ -1350,10 +1431,24 @@ let connections = [
     [], // 151
     [], // 152
     [], // 153
+    [{'t': 0, id: 55}], // 154
+    [{'t': 0, id: 154}], // 155
+    [{'t': 0, id: 155}], // 156
+    [{'t': 0, id: 34}], // 157
+    [], // 158
+    [], // 159
+    [{'t': 0, id: 157}, {'t': 0, id: 38}], // 160
 ];
 
 let discovered = [
     true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
     false,
     false,
     false,

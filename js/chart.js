@@ -1,11 +1,15 @@
 // init - check for url parameters
-
+// todo shelter stone state is not saved
 let bool_arr_to_hex = (arr) => {
     let str = "";
     for(let i = 0; i < arr.length; i+=4){
         let tmp = arr.slice(i, i + 4);
+        let temp_limit = 4 - tmp.length;
+        for(let t = 0; t < temp_limit; t++){
+            tmp.push('0');
+        }
         let b = tmp.reduce((res, x) => res << 1 | x);
-        str += (b == false ? 0 : b).toString(16);
+        str += (b == false ? 0 : (b == true ? 1 : b)).toString(16);
     }
     return str;
 }
@@ -115,6 +119,13 @@ let getHorizontalOffsets = (el) => {
     return margin + border + padding;
 }
 
+let toggleNodeDiscovered = (index) => {
+    if(index == 0){ // dont allow dilapidated temple to be disabled
+        return;
+    }
+    discovered[index] = !discovered[index];
+}
+
 let redraw = () => { // deals with window resize
     sideBar.style('height', (svgDiv.node().clientHeight - getVerticalOffsets(sideBar.node())) + 'px');
     // extra 1 for good measure
@@ -137,7 +148,9 @@ let type_space = {
     'shrine': 80,
     'key': 30,
     'item': 30,
-    'merchant': 10
+    'merchant': 10,
+    'choice_obey': 20,
+    'choice_break': 20
 };
 
 let phase_colors = [
@@ -194,6 +207,30 @@ let item_icons = {
 }
 
 let should_display = (id) => {
+    // if this node is hidden by a discovered node, then do not display this node
+    let hidden_by = nodes[id].hidden_by;
+    if(hidden_by){
+        for(let r = 0; r < hidden_by.length; r++){
+            if(discovered[hidden_by[r]]){
+                return false;
+            }
+        }
+    }
+    // if this node is hidden by all required nodes, then do not display this node
+    let hidden_by_and = nodes[id].hidden_by_and;
+    if(hidden_by_and){
+        let all_true = true;
+        for(let r = 0; r < hidden_by_and.length; r++){
+            if(!discovered[hidden_by_and[r]]){
+                all_true = false;
+                break;
+            }
+        }
+        if(all_true){
+            return false;
+        }
+    }
+        
     let display_self = discovered[id];
     // if this node is discovered, then display it
     if(!display_self){
@@ -205,6 +242,7 @@ let should_display = (id) => {
                     return true;
                 }
             }
+            return false;
         }
         // if this node is revealed by all required nodes, then display this node
         let revealed_by_and = nodes[id].revealed_by_and;
@@ -219,7 +257,9 @@ let should_display = (id) => {
             if(all_true){
                 return true;
             }
+            return false;
         }
+
         for(let d = 0; d < discovered.length; d++){
             // if we are on ourself or the node hasn't been discovered, then move on to the next node
             if(d == id || !discovered[d]){
@@ -342,7 +382,7 @@ let drawMap = () => {
         }
 
         let click = () => {
-            discovered[i] = !discovered[i];
+            toggleNodeDiscovered(i);
             console.log(i);
             buildSideBar();
             drawMap();
@@ -500,12 +540,15 @@ let drawMap = () => {
             img.onload = () => {
                 let height = img.height;
                 let width = img.width;
-                svg.append('image')
+                let tmp = svg.append('image')
                     .attr('x', x - width/2)
                     .attr('y', y - height/2)
                     .attr('xlink:href', img.src)
                     .style('cursor', 'pointer')
                     .on('click', click);
+                if(discovered[i]){
+                    tmp.style('opacity', 0.35);
+                }
             };
             img.src = image_dir + 'key.png';
         }else if(type == 'item'){
@@ -546,6 +589,38 @@ let drawMap = () => {
                 img.src = image_dir + 'met.png';
                 merch.style('opacity', 0.35);
             }
+        }else if(type == 'choice_obey'){
+            let img = new Image();
+            img.onload = () => {
+                let height = img.height;
+                let width = img.width;
+                let tmp = svg.append('image')
+                    .attr('x', x - width/2)
+                    .attr('y', y - height/2)
+                    .attr('xlink:href', img.src)
+                    .style('cursor', 'pointer')
+                    .on('click', click);
+                if(discovered[i]){
+                    tmp.style('opacity', 0.35);
+                }
+            };
+            img.src = image_dir + 'obey.png';
+        }else if(type == 'choice_break'){
+            let img = new Image();
+            img.onload = () => {
+                let height = img.height;
+                let width = img.width;
+                let tmp = svg.append('image')
+                    .attr('x', x - width/2)
+                    .attr('y', y - height/2)
+                    .attr('xlink:href', img.src)
+                    .style('cursor', 'pointer')
+                    .on('click', click);
+                if(discovered[i]){
+                    tmp.style('opacity', 0.35);
+                }
+            };
+            img.src = image_dir + 'break.png';
         }
         // create the labels
         let t = undefined;
@@ -591,7 +666,6 @@ let buildSideBar = () => {
     sideBar.style('background', 'lightgray');
     let show_all_box = sideBar.append('input').property('checked', show_undiscovered).attr('type', 'checkbox').on('change', ()=>{
         show_undiscovered = show_all_box.property('checked');
-        console.log(show_all_box.property('checked'))
         drawMap();
     });
     sideBar.append('text').text(' Show Undiscovered');
@@ -640,10 +714,9 @@ let buildSideBar = () => {
             }
 
             let click = () => {
-                discovered[val[i]] = !discovered[val[i]];
+                toggleNodeDiscovered(val[i]);
                 img.attr('src', image_dir + (discovered[val[i]] ? 'shrine_discovered.png' : 'shrine_undiscovered.png'));
                 drawMap();
-                save_to_clip.text('Save to Clipboard');
             };
 
             txt.on('click', click);
