@@ -123,6 +123,9 @@ let toggleNodeDiscovered = (index) => {
     if(index == 0){ // dont allow dilapidated temple to be disabled
         return;
     }
+    if(discovered[37] && index != 37){
+        return;
+    }
     discovered[index] = !discovered[index];
 }
 
@@ -149,8 +152,8 @@ let type_space = {
     'key': 30,
     'item': 30,
     'merchant': 10,
-    'choice_obey': 20,
-    'choice_break': 20
+    'choice_obey': 30,
+    'choice_break': 30
 };
 
 let phase_colors = [

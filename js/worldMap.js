@@ -900,7 +900,8 @@ let nodes = [
         'phase': 1,
         'x': 979,
         'y': 1649,
-        'items': ['cracker_500']
+        'items': ['cracker_500'],
+        'hidden_by': [119]
     },
     { // 114
         'type': 'merchant',
@@ -945,7 +946,8 @@ let nodes = [
         'phase': 1,
         'x': 854,
         'y': 647,
-        'items': ['cracker_500']
+        'items': ['cracker_500'],
+        'hidden_by': [113]
     },
     { // 120
         'type': 'item',
@@ -1214,7 +1216,7 @@ let nodes = [
         'x': 2200,
         'y': 575,
         'items': ['fountainhead_incense'],
-        'revealed_by_and': [158, 152, 151]
+        'revealed_by_and': [38, 158, 152, 151]
     },
     { // 154
         'name': 'ASHINA CASTLE',
@@ -1254,7 +1256,7 @@ let nodes = [
         'phase': 2,
         'x': 2100,
         'y': 575,
-        'revealed_by_and': [151, 152]
+        'revealed_by_and': [38, 151, 152]
     },
     { // 159
         'type': 'choice_obey',
@@ -1271,6 +1273,30 @@ let nodes = [
         'y': 225,
         'revealed_by_and': [151, 152, 157],
         'hidden_by': [159]
+    },
+    { // 161
+        'name': 'OLD GRAVE',
+        'type': 'shrine',
+        'phase': 2,
+        'x': 1220,
+        'y': 1170,
+        'revealed_by_and': [154, 151, 152]
+    },
+    { // 162
+        'name': 'GREAT SERPENT SHRINE',
+        'type': 'shrine',
+        'phase': 2,
+        'x': 1360,
+        'y': 1400,
+        'revealed_by_and': [161, 151, 152]
+    },
+    { // 163
+        'name': 'ASHINA RESERVOIR',
+        'type': 'shrine',
+        'phase': 2,
+        'x': 1467,
+        'y': 988,
+        'revealed_by_and': [154, 151, 152]
     },
     
 ];
@@ -1435,13 +1461,17 @@ let connections = [
     [{'t': 0, id: 154}], // 155
     [{'t': 0, id: 155}], // 156
     [{'t': 0, id: 34}], // 157
-    [], // 158
-    [], // 159
+    [{'t': 0, id: 38}], // 158
+    [{'t': 0, id: 157}, {'t': 0, id: 37}], // 159
     [{'t': 0, id: 157}, {'t': 0, id: 38}], // 160
+    [{'t': 0, id: 42}, {'t': 0, id: 154}], // 161
+    [{'t': 0, id: 161}, {'t': 0, id: 44}], // 162
+    [{'t': 0, id: 154}, {'t': 0, id: 71}], // 163
 ];
 
 let discovered = [
     true,
+    false,
     false,
     false,
     false,
