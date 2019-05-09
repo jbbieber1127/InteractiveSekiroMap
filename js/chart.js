@@ -123,7 +123,7 @@ let toggleNodeDiscovered = (index) => {
     if(index == 0){ // dont allow dilapidated temple to be disabled
         return;
     }
-    if(discovered[37] && index != 37){
+    if((discovered[37] || discovered[30]) && !(index == 37 || index == 30)){
         return;
     }
     discovered[index] = !discovered[index];
@@ -160,7 +160,7 @@ let phase_colors = [
     '#0C481A',
     '#5D56FF',
     '#FFC107'
-]
+];
 
 let image_dir = 'images/';
 let item_icons = {
@@ -207,7 +207,7 @@ let item_icons = {
     'shelter_stone': 'shelter_stone.png',
     'palace_lotus': 'divine_lotus.png',
     'fountainhead_incense': 'fountainhead_incense.png'
-}
+};
 
 let should_display = (id) => {
     // if this node is hidden by a discovered node, then do not display this node
@@ -672,63 +672,63 @@ let buildSideBar = () => {
         drawMap();
     });
     sideBar.append('text').text(' Show Undiscovered');
-    sideBar.append('br');
-    sideBar.append('br');
-    let controls = sideBar.append('div');
-    controls.append('h1').text('Discovered:');
+    // sideBar.append('br');
+    // sideBar.append('br');
+    // let controls = sideBar.append('div');
+    // controls.append('h1').text('Discovered:');
 
-    let shrine_div = controls.append('div');
-    for(let key in index){
-        let val = index[key];
-        let zone_header = shrine_div.append('p').text('+ ' + key)
-            .style('font-weight', '900').style('cursor', 'pointer');
-        let zone = shrine_div.append('div');
-        zone.style('margin-bottom', '20px')
-            .style('display', 'none');
+    // let shrine_div = controls.append('div');
+    // for(let key in index){
+    //     let val = index[key];
+    //     let zone_header = shrine_div.append('p').text('+ ' + key)
+    //         .style('font-weight', '900').style('cursor', 'pointer');
+    //     let zone = shrine_div.append('div');
+    //     zone.style('margin-bottom', '20px')
+    //         .style('display', 'none');
 
-        // toggle displaying a zone's shrine index on click
-        zone_header.on('click', () => {
-            let cur_disp = zone.style('display');
-            let new_disp = cur_disp == 'none' ? '' : 'none';
-            zone.style('display', new_disp);
-            zone_header.text((new_disp == 'none' ? '+ ' : '- ') + key);
-        });
+    //     // toggle displaying a zone's shrine index on click
+    //     zone_header.on('click', () => {
+    //         let cur_disp = zone.style('display');
+    //         let new_disp = cur_disp == 'none' ? '' : 'none';
+    //         zone.style('display', new_disp);
+    //         zone_header.text((new_disp == 'none' ? '+ ' : '- ') + key);
+    //     });
 
-        for(let i = 0; i < val.length; i++){
-            let n = nodes[val[i]];
-            let shrine = zone.append('div');
-            shrine.style('padding-left', '10px');
-            let img = shrine.append('img')
-                .attr('src', image_dir + (discovered[val[i]] ? 'shrine_discovered.png' : 'shrine_undiscovered.png'))
-                .attr('height', 30);
-            img.style('cursor', 'pointer').style("pointer-events","visible");
-            let txt = shrine.append('text')
-                .text(n.name);
-            txt.style('cursor', 'pointer').style("pointer-events","visible");
+    //     for(let i = 0; i < val.length; i++){
+    //         let n = nodes[val[i]];
+    //         let shrine = zone.append('div');
+    //         shrine.style('padding-left', '10px');
+    //         let img = shrine.append('img')
+    //             .attr('src', image_dir + (discovered[val[i]] ? 'shrine_discovered.png' : 'shrine_undiscovered.png'))
+    //             .attr('height', 30);
+    //         img.style('cursor', 'pointer').style("pointer-events","visible");
+    //         let txt = shrine.append('text')
+    //             .text(n.name);
+    //         txt.style('cursor', 'pointer').style("pointer-events","visible");
 
-            let mouseover = () => {
-                outline.attr('cx', n.x)
-                outline.attr('cy', n.y)
-                outline.style('display', '');
-            }
+    //         let mouseover = () => {
+    //             outline.attr('cx', n.x)
+    //             outline.attr('cy', n.y)
+    //             outline.style('display', '');
+    //         }
 
-            let mouseout = () => {
-                outline.style('display', 'none');
-            }
+    //         let mouseout = () => {
+    //             outline.style('display', 'none');
+    //         }
 
-            let click = () => {
-                toggleNodeDiscovered(val[i]);
-                img.attr('src', image_dir + (discovered[val[i]] ? 'shrine_discovered.png' : 'shrine_undiscovered.png'));
-                drawMap();
-            };
+    //         let click = () => {
+    //             toggleNodeDiscovered(val[i]);
+    //             img.attr('src', image_dir + (discovered[val[i]] ? 'shrine_discovered.png' : 'shrine_undiscovered.png'));
+    //             drawMap();
+    //         };
 
-            txt.on('click', click);
-            img.on('click', click);
-            txt.on('mouseover', mouseover);
-            img.on('mouseover', mouseover);
-            txt.on('mouseout', mouseout);
-            img.on('mouseout', mouseout);
-        }
-    }
+    //         txt.on('click', click);
+    //         img.on('click', click);
+    //         txt.on('mouseover', mouseover);
+    //         img.on('mouseover', mouseover);
+    //         txt.on('mouseout', mouseout);
+    //         img.on('mouseout', mouseout);
+    //     }
+    // }
 }
 buildSideBar();
