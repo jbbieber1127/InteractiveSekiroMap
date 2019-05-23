@@ -125,6 +125,7 @@ let toggleNodeDiscovered = (index) => {
 }
 let check = undefined;
 let showAllTxt = undefined;
+let creditTxt = undefined;
 let redraw = () => { // deals with window resize
     // svgDiv.style('width', d3.select('body').node().getBoundingClientRect().width + "px")
     //     .style('height', d3.select('body').node().getBoundingClientRect().height + "px");
@@ -138,7 +139,7 @@ let redraw = () => { // deals with window resize
         .style('position', 'absolute')
         .property('checked', show_undiscovered)
         .style('left', (svg.node().getBoundingClientRect().x + svg.node().getBoundingClientRect().width - 26) + 'px')
-        .style('top', (svg.node().getBoundingClientRect().y + svg.node().getBoundingClientRect().height + window.scrollY - 26) + 'px')
+        .style('top', (svg.node().getBoundingClientRect().y + svg.node().getBoundingClientRect().height + window.scrollY - 22) + 'px')
         .on('change', ()=>{
             show_undiscovered = !show_undiscovered;
             updateURL();
@@ -151,10 +152,22 @@ let redraw = () => { // deals with window resize
         .style('margin', 0)
         .style('padding', 0)
         .style('position', 'absolute')
-        .style('left', check.node().getBoundingClientRect().x - 70 + 'px')
         .style('top', check.node().getBoundingClientRect().y - 3 + 'px')
-        .text('Show All')
-}
+        .text('Show All');
+    showAllTxt
+        .style('left', check.node().getBoundingClientRect().x - showAllTxt.node().getBoundingClientRect().width - 10 + 'px')
+    if(creditTxt){
+        creditTxt.remove();
+    }
+    creditTxt = d3.select("body").append('p')
+        .style('margin', 0)
+        .style('padding', 0)
+        .style('position', 'absolute')
+        .style('top', check.node().getBoundingClientRect().y - 3 + 'px')
+        .html('Interactive Sekiro Map by John Bieber - Inspired by: <a href="https://www.deviantart.com/lucas-reiner/art/Sekiro-Shadows-Die-Twice-World-Map-Chart-792130419">(Original by Lucas Reiner)</a>')
+    creditTxt
+        .style('left', ((check.node().getBoundingClientRect().x + svg.node().getBoundingClientRect().x)/2 - creditTxt.node().getBoundingClientRect().width/2) + 'px')
+    }
 
 
 redraw();
@@ -326,13 +339,13 @@ let drawMap = () => {
         .on('mouseout', function(){
             
         });
-    // make a new outline
-    outline = svg.append('circle')
-                .attr('r', 140)
-                .style('fill', 'none')
-                .style('stroke-width', 10)
-                .style('stroke', 'black')
-                .style('display', 'none');
+    // bottom controls bar
+    svg.append('rect')
+        .attr('y', 2160 - 60)
+        .attr('height', 60)
+        .attr('width', 3840)
+        .style('fill', 'lightgray')
+        .style('stroke', 'black');
     // add an arrowpoint marker def for later
     let defs = svg.append('defs');
     let arrowMarker = defs.append('marker');
