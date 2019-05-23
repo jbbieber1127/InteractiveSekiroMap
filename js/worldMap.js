@@ -153,7 +153,7 @@ let nodes = [
         'x': 827,
         'y': 1440,
         'items': ['bead'],
-        'revealed_by': [18]
+        'revealed_by': [169]
     },
     { // 20
         'name': 'SAMURAI',
@@ -506,7 +506,7 @@ let nodes = [
         'name': 'KNIGHT',
         'type': 'encounter',
         'phase': 1,
-        'x': 2515,
+        'x': 2550,
         'y': 745,
         'items': ['bead']
     },
@@ -514,22 +514,22 @@ let nodes = [
         'name': 'TEMPLE GROUNDS',
         'type': 'shrine',
         'phase': 1,
-        'x': 2490,
-        'y': 520
+        'x': 2400,
+        'y': 650
     },
     { // 64
         'name': 'MAIN HALL',
         'type': 'shrine',
         'phase': 1,
-        'x': 2715,
-        'y': 420
+        'x': 2615,
+        'y': 550
     },
     { // 65
         'name': 'CENTIPEDE',
         'type': 'encounter',
         'phase': 1,
-        'x': 2580,
-        'y': 390,
+        'x': 2525,
+        'y': 440,
         'items': ['bead'],
         'revealed_by': [63]
     },
@@ -538,15 +538,15 @@ let nodes = [
         'type': 'encounter_mjr',
         'icon': 'monkeys.png',
         'phase': 1,
-        'x': 2950,
-        'y': 320
+        'x': 2825,
+        'y': 400
     },
     { // 67
         'name': 'INNER SANCTUM',
         'type': 'shrine',
         'phase': 1,
-        'x': 3195,
-        'y': 235
+        'x': 2850,
+        'y': 185
     },
     { // 68
         'name': 'ASHINA RESERVOIR',
@@ -714,8 +714,8 @@ let nodes = [
         'name': 'FOUNTAINHEAD PALACE',
         'type': 'shrine',
         'phase': 2,
-        'x': 3495,
-        'y': 1880,
+        'x': 3595,
+        'y': 1980,
         'revealed_by': [153]
     },
     { // 89
@@ -723,29 +723,29 @@ let nodes = [
         'type': 'encounter_mjr',
         'icon': 'monk.png',
         'phase': 2,
-        'x': 3625,
-        'y': 1695
+        'x': 3325,
+        'y': 1795
     },
     { // 90
         'name': 'VERMILLION BRIDGE',
         'type': 'shrine',
         'phase': 2,
-        'x': 3400,
-        'y': 1485
+        'x': 3550,
+        'y': 1585
     },
     { // 91
         'name': 'MIBU MANOR',
         'type': 'shrine',
         'phase': 2,
         'x': 3095,
-        'y': 1370
+        'y': 1570
     },
     { // 92
         'name': 'BULL',
         'type': 'encounter',
         'phase': 2,
-        'x': 2945,
-        'y': 1254,
+        'x': 3045,
+        'y': 1354,
         'items': ['bead'],
         'revealed_by': [91, 93]
     },
@@ -753,22 +753,22 @@ let nodes = [
         'name': 'FLOWER VIEWING STAGE',
         'type': 'shrine',
         'phase': 2,
-        'x': 2935,
-        'y': 1060
+        'x': 3135,
+        'y': 1210
     },
     { // 94
         'name': 'GREAT SAKURA',
         'type': 'shrine',
         'phase': 2,
-        'x': 3350,
-        'y': 1110
+        'x': 3590,
+        'y': 1211
     },
     { // 95
         'name': 'HEADLESS',
         'type': 'encounter',
         'phase': 2,
-        'x': 3260,
-        'y': 1215,
+        'x': 3325,
+        'y': 1465,
         'items': ['yashi'],
         'revealed_by': [96]
     },
@@ -776,8 +776,8 @@ let nodes = [
         'name': 'OKAMI',
         'type': 'encounter',
         'phase': 2,
-        'x': 3480,
-        'y': 1080,
+        'x': 3675,
+        'y': 1310,
         'items': ['bead'],
         'revealed_by': [91, 94] // you see the okami from anywhere in the area
     },
@@ -785,8 +785,8 @@ let nodes = [
         'name': 'SHICHIMEN',
         'type': 'encounter',
         'phase': 2,
-        'x': 3330,
-        'y': 890,
+        'x': 3370,
+        'y': 975,
         'items': ['azurite'],
         'revealed_by': [94]
     },
@@ -794,37 +794,38 @@ let nodes = [
         'name': 'PALACE GROUNDS',
         'type': 'shrine',
         'phase': 2,
-        'x': 3210,
-        'y': 787
+        'x': 3380,
+        'y': 837
     },
     { // 99
         'name': 'NEAR POT NOBLE',
         'type': 'shrine',
         'phase': 2,
-        'x': 2875,
-        'y': 785
+        'x': 3136,
+        'y': 1010
     },
     { // 100
         'name': 'FEEDING GROUNDS',
         'type': 'shrine',
         'phase': 2,
-        'x': 3595,
-        'y': 855
+        'x': 3695,
+        'y': 975
     },
     { // 101
         'name': 'SANCTUARY',
         'type': 'shrine',
         'phase': 2,
-        'x': 3370,
-        'y': 505
+        'x': 3670,
+        'y': 655
     },
     { // 102
         'name': 'DIVINE DRAGON',
         'type': 'encounter_mjr',
         'icon': 'dragon.png',
         'phase': 2,
-        'x': 3500,
-        'y': 320
+        'x': 3350,
+        'y': 570,
+        'revealed_by': [101]
     },
     { // 103
         'name': 'GENICHIRO ASHINA', // missed it earlier
@@ -1102,23 +1103,23 @@ let nodes = [
     { // 137
         'type': 'item',
         'phase': 2,
-        'x': 3145,
-        'y': 1219,
+        'x': 3205,
+        'y': 1389,
         'items': ['bead_submerged'],
         'revealed_by': [96]
     },
     { // 138
         'type': 'item',
         'phase': 2,
-        'x': 3330,
-        'y': 770,
+        'x': 3440,
+        'y': 730,
         'items': ['seed_indoor'],
         'revealed_by': [98]
     },
     { // 139
         'type': 'item',
         'phase': 2,
-        'x': 2891,
+        'x': 3050,
         'y': 907,
         'items': ['2az_6ea'],
         'revealed_by': [99]
@@ -1126,8 +1127,8 @@ let nodes = [
     { // 140
         'type': 'item',
         'phase': 2,
-        'x': 2811,
-        'y': 895,
+        'x': 3025,
+        'y': 1025,
         'items': ['mask_12'],
         'revealed_by': [99]
     },
@@ -1196,16 +1197,16 @@ let nodes = [
     { // 149
         'type': 'item',
         'phase': 1,
-        'x': 2385,
-        'y': 522,
+        'x': 2335,
+        'y': 550,
         'items': ['bead_submerged'],
         'revealed_by': [63]
     },
     { // 150
         'type': 'item',
         'phase': 1,
-        'x': 2787,
-        'y': 490,
+        'x': 2700,
+        'y': 640,
         'items': ['scroll'],
         'revealed_by': [64]
     },
@@ -1486,7 +1487,7 @@ let connections = [
     [{'t': 0, id: 99}, {'t': 0, id: 100}, {'t': 0, id: 101}], // 98
     [], // 99
     [{'t': 0, id: 101}], // 100
-    [{'t': 0, id: 102}], // 101
+    [{'t': 2, id: 102}], // 101
     [], // 102
     [], // 103
     [], // 104
@@ -1553,9 +1554,9 @@ let connections = [
     [{'t': 0, id: 158}, {'t': 0, id: 164}], // 165
     [{'t': 0, id: 164}], // 166
     [{'t': 0, id: 166}], // 167
-    [{'t': 0, id: 167}, {'t': 0, id: 29}], // 168
+    [{'t': 0, id: 29}], // 168
     [{'t': 0, id: 161}], // 169
-    [{'t': 0, id: 169}], // 170
+    [{'t': 0, id: 169},  {'t': 2, id: 59}], // 170
     [{'t': 0, id: 170}, {'t': 0, id: 17}], // 171
 ];
 

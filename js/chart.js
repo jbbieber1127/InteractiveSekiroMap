@@ -298,6 +298,17 @@ let drawMap = () => {
     // background
     svg.append('image')
         .attr('xlink:href', 'images/background.jpg');
+    // append the help icon
+    svg.append('image')
+        .attr('xlink:href', 'images/help.png')
+        .attr('x', 3665)
+        .attr('y', -25)
+        .on('mouseover', function(){
+
+        })
+        .on('mouseout', function(){
+            
+        });
     // make a new outline
     outline = svg.append('circle')
                 .attr('r', 140)
@@ -671,7 +682,7 @@ let buildSideBar = () => {
         show_undiscovered = show_all_box.property('checked');
         drawMap();
     });
-    sideBar.append('text').text(' Show Undiscovered');
+    sideBar.append('text').text(' Show All');
     // sideBar.append('br');
     // sideBar.append('br');
     // let controls = sideBar.append('div');
