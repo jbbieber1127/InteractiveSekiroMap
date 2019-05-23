@@ -1,3 +1,5 @@
+// initialize some variables
+let show_undiscovered = false;
 // init - check for url parameters
 // todo shelter stone state is not saved
 let bool_arr_to_hex = (arr) => {
@@ -54,15 +56,24 @@ let updateURLParameter = (url, param, paramVal) => {
 
 let updateURL = () => {
     window.history.replaceState('', '', updateURLParameter(window.location.href, "state", bool_arr_to_hex(discovered)));
+    window.history.replaceState('', '', updateURLParameter(window.location.href, "showAll", show_undiscovered));
 }
 
 let updateState = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const stateParam = urlParams.get('state');
+    const showAllParam = urlParams.get('showAll');
     if(stateParam){
         discovered = hex_to_bool_arr(stateParam, nodes.length);
     }else{
-        console.log('no params')
+        console.log("State parameter not specified.");
+    }
+    if(showAllParam){
+        if(showAllParam == 'true'){
+            show_undiscovered = true;
+        }
+    }else{
+        console.log("Show all parameter not specified.");
     }
 }
 updateState();
@@ -71,20 +82,12 @@ updateState();
 let body = d3.select('body');
 let content = body.append('div')
     .style('width', '100%')
-    .classed('parent', true);
+    .style('display', 'inline-block');
 
 // container for svg
 let svgDiv = content.append('div')
-    .style('width', '80%')
+    .style('width', '100%')
     .classed('svg-container', true);
-svgDiv.classed('align', true);
-
-let sideBar = content.append('div')
-    .style('padding-left', '15px')
-    .style('padding-right', '15px')
-    .style('padding-top', '15px')
-    .style('overflow-y', 'scroll');
-sideBar.classed('align', true);
 
 // responsive svg
 let svg = svgDiv
@@ -92,14 +95,6 @@ let svg = svgDiv
 svg.attr('preserveAspectRatio', 'xMinYMin meet')
     .attr('viewBox', '0 0 3840 2160')
     .classed('svg-content-responsive', true);
-
-// an outline for hovering over the index
-let outline = svg.append('circle')
-                .attr('r', 140)
-                .style('fill', 'none')
-                .style('stroke-width', 10)
-                .style('stroke', 'black')
-                .style('display', 'none');
 
  // returns the combined horizontal margin, border, and padding of a DOM element
 let getHorizontalOffsets = (el) => {
@@ -128,21 +123,43 @@ let toggleNodeDiscovered = (index) => {
     }
     discovered[index] = !discovered[index];
 }
-
+let check = undefined;
+let showAllTxt = undefined;
 let redraw = () => { // deals with window resize
-    sideBar.style('height', (svgDiv.node().clientHeight - getVerticalOffsets(sideBar.node())) + 'px');
-    // extra 1 for good measure
-    let offsets = 1 + getHorizontalOffsets(d3.select('body').node()) + getHorizontalOffsets(content.node()) +
-        getHorizontalOffsets(sideBar.node()) + 
-        parseInt(svgDiv.style('margin-left')) + parseInt(svgDiv.style('margin-right'));
-    sideBar.style('width', (document.documentElement.clientWidth - svgDiv.node().clientWidth - offsets) + 'px')
+    // svgDiv.style('width', d3.select('body').node().getBoundingClientRect().width + "px")
+    //     .style('height', d3.select('body').node().getBoundingClientRect().height + "px");
+    svgDiv.style('max-height', window.innerHeight - 4 + 'px');
+    svg.style('height', window.innerHeight - 4 + 'px');
+    if(check){
+        check.remove();
+    }
+    check = d3.select("body").append('input')
+        .attr('type','checkbox')
+        .style('position', 'absolute')
+        .property('checked', show_undiscovered)
+        .style('left', (svg.node().getBoundingClientRect().x + svg.node().getBoundingClientRect().width - 26) + 'px')
+        .style('top', (svg.node().getBoundingClientRect().y + svg.node().getBoundingClientRect().height + window.scrollY - 26) + 'px')
+        .on('change', ()=>{
+            show_undiscovered = !show_undiscovered;
+            updateURL();
+            drawMap();
+        });
+    if(showAllTxt){
+        showAllTxt.remove();
+    }
+    showAllTxt = d3.select("body").append('p')
+        .style('margin', 0)
+        .style('padding', 0)
+        .style('position', 'absolute')
+        .style('left', check.node().getBoundingClientRect().x - 70 + 'px')
+        .style('top', check.node().getBoundingClientRect().y - 3 + 'px')
+        .text('Show All')
 }
 
 
 redraw();
 window.addEventListener('resize', redraw);
 
-let show_undiscovered = false;
 
 let type_space = {
     'encounter_mjr_big': 114.5,
@@ -398,7 +415,7 @@ let drawMap = () => {
         let click = () => {
             toggleNodeDiscovered(i);
             console.log(i);
-            buildSideBar();
+            // buildSideBar();
             drawMap();
             updateURL();
         };
@@ -673,73 +690,3 @@ let drawMap = () => {
 }
 
 drawMap();
-
-// build the side bar
-let buildSideBar = () => {
-    sideBar.html('');
-    sideBar.style('background', 'lightgray');
-    let show_all_box = sideBar.append('input').property('checked', show_undiscovered).attr('type', 'checkbox').on('change', ()=>{
-        show_undiscovered = show_all_box.property('checked');
-        drawMap();
-    });
-    sideBar.append('text').text(' Show All');
-    // sideBar.append('br');
-    // sideBar.append('br');
-    // let controls = sideBar.append('div');
-    // controls.append('h1').text('Discovered:');
-
-    // let shrine_div = controls.append('div');
-    // for(let key in index){
-    //     let val = index[key];
-    //     let zone_header = shrine_div.append('p').text('+ ' + key)
-    //         .style('font-weight', '900').style('cursor', 'pointer');
-    //     let zone = shrine_div.append('div');
-    //     zone.style('margin-bottom', '20px')
-    //         .style('display', 'none');
-
-    //     // toggle displaying a zone's shrine index on click
-    //     zone_header.on('click', () => {
-    //         let cur_disp = zone.style('display');
-    //         let new_disp = cur_disp == 'none' ? '' : 'none';
-    //         zone.style('display', new_disp);
-    //         zone_header.text((new_disp == 'none' ? '+ ' : '- ') + key);
-    //     });
-
-    //     for(let i = 0; i < val.length; i++){
-    //         let n = nodes[val[i]];
-    //         let shrine = zone.append('div');
-    //         shrine.style('padding-left', '10px');
-    //         let img = shrine.append('img')
-    //             .attr('src', image_dir + (discovered[val[i]] ? 'shrine_discovered.png' : 'shrine_undiscovered.png'))
-    //             .attr('height', 30);
-    //         img.style('cursor', 'pointer').style("pointer-events","visible");
-    //         let txt = shrine.append('text')
-    //             .text(n.name);
-    //         txt.style('cursor', 'pointer').style("pointer-events","visible");
-
-    //         let mouseover = () => {
-    //             outline.attr('cx', n.x)
-    //             outline.attr('cy', n.y)
-    //             outline.style('display', '');
-    //         }
-
-    //         let mouseout = () => {
-    //             outline.style('display', 'none');
-    //         }
-
-    //         let click = () => {
-    //             toggleNodeDiscovered(val[i]);
-    //             img.attr('src', image_dir + (discovered[val[i]] ? 'shrine_discovered.png' : 'shrine_undiscovered.png'));
-    //             drawMap();
-    //         };
-
-    //         txt.on('click', click);
-    //         img.on('click', click);
-    //         txt.on('mouseover', mouseover);
-    //         img.on('mouseover', mouseover);
-    //         txt.on('mouseout', mouseout);
-    //         img.on('mouseout', mouseout);
-    //     }
-    // }
-}
-buildSideBar();
