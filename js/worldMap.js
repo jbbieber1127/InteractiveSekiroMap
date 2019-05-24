@@ -629,7 +629,7 @@ let nodes = [
         'x': 2400,
         'y': 1375,
         'items': ['bead', 'bead'],
-        'revealed_by': [76]
+        'revealed_by_and': [53, 76]
     },
     { // 78
         'name': 'SHICHIMEN',
